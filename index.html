@@ -31,8 +31,10 @@
 
         <nav class="nav" aria-label="Navigation principale">
           <a href="#services">Services</a>
-          <a href="#engagements">Engagements</a>
-          <a href="#contact">Contact</a>
+          <a href="#tarifs">Tarifs</a>
+          <a href="#avis">Avis</a>
+          <a href="#faq">FAQ</a>
+          <a href="#contact">Contactez-nous</a>
         </nav>
 
         <div class="topbar__actions">
@@ -89,157 +91,155 @@
             <p class="section__lede">
               Une équipe équipée pour l'assainissement, la plomberie et le débouchage — interventions rapides,
               propres et sécurisées sur tout le territoire normand.
-              <span class="section__hint">Défilez pour passer d'un service à l'autre.</span>
+              <span class="section__hint">Survolez un service pour découvrir le détail.</span>
             </p>
           </header>
 
-          <div class="services-scene" style="--service-count: 6" aria-label="Parcours des services au défilement">
-            <div class="services-scene__sticky">
-              <ol class="services-stack" role="list">
-            <li class="service-card" role="listitem" data-service="1">
-              <article class="service">
-              <div class="service__parallax" aria-hidden="true"></div>
-              <div class="service__icon service__icon--green" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                  <path d="M6 4h8l2 3v13H6V4z" />
-                  <path d="M8 8h6M8 12h6" />
-                </svg>
+          <div class="svc-list reveal" role="list">
+            <article class="svc-item is-open" role="listitem" data-service="1">
+              <button class="svc-item__head" type="button" aria-expanded="true" aria-controls="svc-panel-1">
+                <span class="svc-item__num">01</span>
+                <span class="svc-item__name">Assainissement</span>
+                <span class="svc-item__plus" aria-hidden="true"></span>
+              </button>
+              <div class="svc-item__panel" id="svc-panel-1">
+                <div class="svc-item__content">
+                  <ul class="svc-item__tags" role="list">
+                    <li class="svc-tag">Réseaux</li>
+                    <li class="svc-tag">Fosses</li>
+                    <li class="svc-tag">Mise en conformité</li>
+                  </ul>
+                  <p class="svc-item__desc">
+                    Entretien et remise en conformité de vos installations d'assainissement : réseaux, fosses,
+                    puisards et raccordements. Nous intervenons chez les particuliers, professionnels et
+                    collectivités en Normandie.
+                  </p>
+                </div>
+                <figure class="svc-item__media">
+                  <img src="./assets/services/assainissement.jpg" width="640" height="420" alt="Intervention d'assainissement Normandie Débouche" loading="lazy" decoding="async" />
+                </figure>
               </div>
-              <h3 class="service__name">Assainissement</h3>
-              <p class="service__desc">
-                Entretien et remise en conformité de vos installations d'assainissement : réseaux, fosses,
-                puisards et raccordements. Nous intervenons chez les particuliers, professionnels et
-                collectivités en Normandie.
-              </p>
-              <ul class="service__points">
-                <li>Diagnostic et dépannage des réseaux</li>
-                <li>Vidange, entretien et contrôle des fosses</li>
-                <li>Remise en service rapide et propre</li>
-              </ul>
-              </article>
-            </li>
+            </article>
 
-            <li class="service-card" role="listitem" data-service="2">
-              <article class="service">
-              <div class="service__parallax" aria-hidden="true"></div>
-              <div class="service__icon service__icon--blue" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                  <path d="M12 3v3M8 6h8" />
-                  <path d="M7 10c0 3 2 5 5 8 3-3 5-5 5-8a5 5 0 0 0-10 0z" />
-                </svg>
+            <article class="svc-item" role="listitem" data-service="2">
+              <button class="svc-item__head" type="button" aria-expanded="false" aria-controls="svc-panel-2">
+                <span class="svc-item__num">02</span>
+                <span class="svc-item__name">Plomberie</span>
+                <span class="svc-item__plus" aria-hidden="true"></span>
+              </button>
+              <div class="svc-item__panel" id="svc-panel-2">
+                <div class="svc-item__content">
+                  <ul class="svc-item__tags" role="list">
+                    <li class="svc-tag">Fuites</li>
+                    <li class="svc-tag">Sanitaires</li>
+                    <li class="svc-tag">Canalisations</li>
+                  </ul>
+                  <p class="svc-item__desc">
+                    Dépannage et réparation de plomberie : fuites, canalisations, sanitaires, chauffe-eau et
+                    équipements. Un expert ND intervient avec le matériel adapté pour une solution durable.
+                  </p>
+                </div>
+                <figure class="svc-item__media">
+                  <img src="./assets/services/plomberie.jpg" width="640" height="420" alt="Travaux de plomberie Normandie Débouche" loading="lazy" decoding="async" />
+                </figure>
               </div>
-              <h3 class="service__name">Plomberie</h3>
-              <p class="service__desc">
-                Dépannage et réparation de plomberie : fuites, canalisations, sanitaires, chauffe-eau et
-                équipements. Un expert ND intervient avec le matériel adapté pour une solution durable.
-              </p>
-              <ul class="service__points">
-                <li>Recherche et réparation de fuites</li>
-                <li>Débouchage et remplacement de canalisations</li>
-                <li>Installation et dépannage sanitaires</li>
-              </ul>
-              </article>
-            </li>
+            </article>
 
-            <li class="service-card" role="listitem" data-service="3">
-              <article class="service">
-              <div class="service__parallax" aria-hidden="true"></div>
-              <div class="service__icon service__icon--green" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                  <path d="M9 4l-2 4h10l-2-4H9z" />
-                  <path d="M7 8v10h10V8" />
-                  <path d="M10 12h4" />
-                </svg>
+            <article class="svc-item" role="listitem" data-service="3">
+              <button class="svc-item__head" type="button" aria-expanded="false" aria-controls="svc-panel-3">
+                <span class="svc-item__num">03</span>
+                <span class="svc-item__name">Dégorgement</span>
+                <span class="svc-item__plus" aria-hidden="true"></span>
+              </button>
+              <div class="svc-item__panel" id="svc-panel-3">
+                <div class="svc-item__content">
+                  <ul class="svc-item__tags" role="list">
+                    <li class="svc-tag">Urgence 24/7</li>
+                    <li class="svc-tag">Haute pression</li>
+                    <li class="svc-tag">Copropriété</li>
+                  </ul>
+                  <p class="svc-item__desc">
+                    Débouchage d'urgence des canalisations obstruées : éviers, WC, douches, baignoires et colonnes
+                    d'immeuble. Intervention rapide 24h/24 et 7j/7 pour limiter les dégâts des eaux.
+                  </p>
+                </div>
+                <figure class="svc-item__media">
+                  <img src="./assets/services/degorgement.jpg" width="640" height="420" alt="Dégorgement de canalisation Normandie Débouche" loading="lazy" decoding="async" />
+                </figure>
               </div>
-              <h3 class="service__name">Dégorgement</h3>
-              <p class="service__desc">
-                Débouchage d'urgence des canalisations obstruées : éviers, WC, douches, baignoires et colonnes
-                d'immeuble. Intervention rapide 24h/24 et 7j/7 pour limiter les dégâts des eaux.
-              </p>
-              <ul class="service__points">
-                <li>Débouchage mécanique et haute pression</li>
-                <li>Intervention en maison et en copropriété</li>
-                <li>Chantier propre, sécurisé et garanti</li>
-              </ul>
-              </article>
-            </li>
+            </article>
 
-            <li class="service-card" role="listitem" data-service="4">
-              <article class="service">
-              <div class="service__parallax" aria-hidden="true"></div>
-              <div class="service__icon service__icon--blue" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                  <path d="M4 14h16M6 10h12M8 6h8" />
-                  <path d="M12 14v6" />
-                </svg>
+            <article class="svc-item" role="listitem" data-service="4">
+              <button class="svc-item__head" type="button" aria-expanded="false" aria-controls="svc-panel-4">
+                <span class="svc-item__num">04</span>
+                <span class="svc-item__name">Curage</span>
+                <span class="svc-item__plus" aria-hidden="true"></span>
+              </button>
+              <div class="svc-item__panel" id="svc-panel-4">
+                <div class="svc-item__content">
+                  <ul class="svc-item__tags" role="list">
+                    <li class="svc-tag">Haute pression</li>
+                    <li class="svc-tag">Préventif</li>
+                    <li class="svc-tag">Réseaux</li>
+                  </ul>
+                  <p class="svc-item__desc">
+                    Nettoyage haute pression des canalisations et avaloirs pour éliminer graisses, calcaires et
+                    dépôts. Le curage préventif prolonge la durée de vie de vos réseaux et évite les blocages.
+                  </p>
+                </div>
+                <figure class="svc-item__media">
+                  <img src="./assets/services/curage.jpg" width="640" height="420" alt="Curage de canalisation Normandie Débouche" loading="lazy" decoding="async" />
+                </figure>
               </div>
-              <h3 class="service__name">Curage</h3>
-              <p class="service__desc">
-                Nettoyage haute pression des canalisations et avaloirs pour éliminer graisses, calcaires et
-                dépôts. Le curage préventif prolonge la durée de vie de vos réseaux et évite les blocages.
-              </p>
-              <ul class="service__points">
-                <li>Curage de canalisations enterrées ou apparentes</li>
-                <li>Évacuation des boues et résidus</li>
-                <li>Entretien préventif recommandé</li>
-              </ul>
-              </article>
-            </li>
+            </article>
 
-            <li class="service-card" role="listitem" data-service="5">
-              <article class="service">
-              <div class="service__parallax" aria-hidden="true"></div>
-              <div class="service__icon service__icon--green" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                  <rect x="4" y="6" width="16" height="12" rx="2" />
-                  <circle cx="12" cy="12" r="3" />
-                </svg>
+            <article class="svc-item" role="listitem" data-service="5">
+              <button class="svc-item__head" type="button" aria-expanded="false" aria-controls="svc-panel-5">
+                <span class="svc-item__num">05</span>
+                <span class="svc-item__name">Passage de caméra</span>
+                <span class="svc-item__plus" aria-hidden="true"></span>
+              </button>
+              <div class="svc-item__panel" id="svc-panel-5">
+                <div class="svc-item__content">
+                  <ul class="svc-item__tags" role="list">
+                    <li class="svc-tag">Inspection vidéo</li>
+                    <li class="svc-tag">Diagnostic</li>
+                    <li class="svc-tag">Rapport</li>
+                  </ul>
+                  <p class="svc-item__desc">
+                    Inspection vidéo des canalisations pour localiser avec précision fissures, racines, affaissements
+                    ou objets bloquants. Un diagnostic fiable avant toute réparation, pour éviter les travaux inutiles.
+                  </p>
+                </div>
+                <figure class="svc-item__media">
+                  <img src="./assets/services/camera.jpg" width="640" height="420" alt="Inspection caméra des canalisations Normandie Débouche" loading="lazy" decoding="async" />
+                </figure>
               </div>
-              <h3 class="service__name">Passage de caméra</h3>
-              <p class="service__desc">
-                Inspection vidéo des canalisations pour localiser avec précision fissures, racines, affaissements
-                ou objets bloquants. Un diagnostic fiable avant toute réparation, pour éviter les travaux inutiles.
-              </p>
-              <ul class="service__points">
-                <li>Caméra endoscopique professionnelle</li>
-                <li>Repérage exact de l'anomalie</li>
-                <li>Rapport clair pour vous et votre assurance</li>
-              </ul>
-              </article>
-            </li>
+            </article>
 
-            <li class="service-card" role="listitem" data-service="6">
-              <article class="service">
-              <div class="service__parallax" aria-hidden="true"></div>
-              <div class="service__icon service__icon--blue" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                  <path d="M6 16c2-4 4-6 6-8s4-4 6-8" />
-                  <path d="M8 18c1-2 3-4 5-5" />
-                </svg>
+            <article class="svc-item" role="listitem" data-service="6">
+              <button class="svc-item__head" type="button" aria-expanded="false" aria-controls="svc-panel-6">
+                <span class="svc-item__num">06</span>
+                <span class="svc-item__name">Pompage</span>
+                <span class="svc-item__plus" aria-hidden="true"></span>
+              </button>
+              <div class="svc-item__panel" id="svc-panel-6">
+                <div class="svc-item__content">
+                  <ul class="svc-item__tags" role="list">
+                    <li class="svc-tag">Fosses</li>
+                    <li class="svc-tag">Évacuation</li>
+                    <li class="svc-tag">Haute capacité</li>
+                  </ul>
+                  <p class="svc-item__desc">
+                    Vidange, pompage et évacuation de fosses, puisards, caves inondées ou bacs de rétention.
+                    Notre camion équipé assure une évacuation conforme et un chantier laissé propre.
+                  </p>
+                </div>
+                <figure class="svc-item__media">
+                  <img src="./assets/services/pompage.jpg" width="640" height="420" alt="Pompage et vidange Normandie Débouche" loading="lazy" decoding="async" />
+                </figure>
               </div>
-              <h3 class="service__name">Pompage</h3>
-              <p class="service__desc">
-                Vidange, pompage et évacuation de fosses, puisards, caves inondées ou bacs de rétention.
-                Notre camion équipé assure une évacuation conforme et un chantier laissé propre.
-              </p>
-              <ul class="service__points">
-                <li>Pompage de fosses et bac à graisse</li>
-                <li>Évacuation d'eaux chargées ou boueuses</li>
-                <li>Matériel haute capacité sur site</li>
-              </ul>
-              </article>
-            </li>
-              </ol>
-
-              <nav class="services-progress" aria-label="Progression des services">
-                <a class="services-progress__dot is-active" href="#services" data-step="1" aria-label="Assainissement"></a>
-                <a class="services-progress__dot" href="#services" data-step="2" aria-label="Plomberie"></a>
-                <a class="services-progress__dot" href="#services" data-step="3" aria-label="Dégorgement"></a>
-                <a class="services-progress__dot" href="#services" data-step="4" aria-label="Curage"></a>
-                <a class="services-progress__dot" href="#services" data-step="5" aria-label="Passage de caméra"></a>
-                <a class="services-progress__dot" href="#services" data-step="6" aria-label="Pompage"></a>
-              </nav>
-            </div>
+            </article>
           </div>
 
         </div>
@@ -249,42 +249,383 @@
         <div class="section__inner">
           <header class="section__head reveal">
             <h2 id="engagements-title" class="section__title">Pourquoi nous choisir</h2>
+            <p class="section__lede">
+              Trois engagements qui font la différence à chaque intervention.
+              <span class="section__hint">Défilez pour découvrir nos engagements.</span>
+            </p>
           </header>
 
-          <ul class="pillars" role="list">
-            <li class="pillar reveal" role="listitem">
-              <div class="pillar__icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                  <path d="M12 3l7 4v6c0 4-3 7-7 8-4-1-7-4-7-8V7l7-4z" />
-                  <path d="M9 12l2 2 4-4" />
-                </svg>
+          <div class="services-scene" style="--service-count: 3" aria-label="Parcours de nos engagements au défilement">
+            <div class="services-scene__sticky">
+              <ol class="services-stack" role="list">
+                <li class="service-card" role="listitem" data-service="1">
+                  <article class="service">
+                    <div class="service__parallax" aria-hidden="true"></div>
+                    <div class="service__icon service__icon--green" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                        <path d="M12 3l7 4v6c0 4-3 7-7 8-4-1-7-4-7-8V7l7-4z" />
+                        <path d="M9 12l2 2 4-4" />
+                      </svg>
+                    </div>
+                    <h3 class="service__name">Travail propre sécurisé</h3>
+                    <p class="service__desc">
+                      Chantier protégé, matériel adapté et respect strict des normes de sécurité.
+                      Nous laissons votre espace propre, exactement comme nous l'avons trouvé.
+                    </p>
+                    <ul class="service__points">
+                      <li>Protection des lieux avant intervention</li>
+                      <li>Matériel professionnel et entretenu</li>
+                      <li>Respect des normes en vigueur</li>
+                    </ul>
+                  </article>
+                </li>
+
+                <li class="service-card" role="listitem" data-service="2">
+                  <article class="service">
+                    <div class="service__parallax" aria-hidden="true"></div>
+                    <div class="service__icon service__icon--blue" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                        <circle cx="12" cy="8" r="4" />
+                        <path d="M5 20c1-4 4-6 7-6s6 2 7 6" />
+                        <path d="M16 14l2 2 3-3" />
+                      </svg>
+                    </div>
+                    <h3 class="service__name">Expert à votre service</h3>
+                    <p class="service__desc">
+                      Conseil clair, diagnostic précis et intervention réalisée par un professionnel
+                      ND. Vous comprenez chaque étape, sans jargon ni mauvaise surprise.
+                    </p>
+                    <ul class="service__points">
+                      <li>Diagnostic précis avant travaux</li>
+                      <li>Explications claires et transparentes</li>
+                      <li>Intervention par un pro qualifié</li>
+                    </ul>
+                  </article>
+                </li>
+
+                <li class="service-card" role="listitem" data-service="3">
+                  <article class="service">
+                    <div class="service__parallax" aria-hidden="true"></div>
+                    <div class="service__icon service__icon--green" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                        <path d="M12 3l2.4 4.8 5.4.8-3.9 3.8.9 5.4L12 15.8 7.2 17.8l.9-5.4L4.2 8.6l5.4-.8L12 3z" />
+                      </svg>
+                    </div>
+                    <h3 class="service__name">Satisfaction garantie</h3>
+                    <p class="service__desc">
+                      Résultat contrôlé avant notre départ — votre tranquillité est notre priorité.
+                      Nous ne quittons pas les lieux tant que tout ne fonctionne pas parfaitement.
+                    </p>
+                    <ul class="service__points">
+                      <li>Vérification du résultat sur place</li>
+                      <li>Facture détaillée remise</li>
+                      <li>Votre tranquillité avant tout</li>
+                    </ul>
+                  </article>
+                </li>
+              </ol>
+
+              <nav class="services-progress" aria-label="Progression des engagements">
+                <a class="services-progress__dot is-active" href="#engagements" data-step="1" aria-label="Travail propre sécurisé"></a>
+                <a class="services-progress__dot" href="#engagements" data-step="2" aria-label="Expert à votre service"></a>
+                <a class="services-progress__dot" href="#engagements" data-step="3" aria-label="Satisfaction garantie"></a>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="tarifs" class="section section--tarifs" aria-labelledby="tarifs-title">
+        <div class="section__inner">
+          <header class="section__head reveal">
+            <p class="section__eyebrow">ND</p>
+            <h2 id="tarifs-title" class="section__title">Nos tarifs</h2>
+            <p class="section__lede">
+              Des prix clairs et sans surprise. Le devis est gratuit et confirmé avant toute
+              intervention — vous savez exactement ce que vous payez.
+            </p>
+          </header>
+
+          <ul class="tarifs" role="list">
+            <li class="tarif reveal" role="listitem">
+              <div class="tarif__head">
+                <h3 class="tarif__name">Débouchage simple</h3>
+                <p class="tarif__tagline">Évier · WC · douche · lavabo</p>
               </div>
-              <h3 class="pillar__title">Travail propre sécurisé</h3>
-              <p class="pillar__desc">Chantier protégé, matériel adapté et respect des normes de sécurité.</p>
+              <p class="tarif__price"><span class="tarif__from">à partir de</span>89&nbsp;€</p>
+              <ul class="tarif__points">
+                <li>Diagnostic sur place</li>
+                <li>Débouchage mécanique</li>
+                <li>Contrôle de l'écoulement</li>
+              </ul>
+              <a class="btn btn--outline" href="tel:+33746368799">Demander ce service</a>
             </li>
 
-            <li class="pillar reveal" role="listitem">
-              <div class="pillar__icon pillar__icon--blue" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                  <circle cx="12" cy="8" r="4" />
-                  <path d="M5 20c1-4 4-6 7-6s6 2 7 6" />
-                  <path d="M16 14l2 2 3-3" />
-                </svg>
+            <li class="tarif tarif--featured reveal" role="listitem">
+              <span class="tarif__badge">Le plus demandé</span>
+              <div class="tarif__head">
+                <h3 class="tarif__name">Dégorgement haute pression</h3>
+                <p class="tarif__tagline">Canalisations &amp; colonnes</p>
               </div>
-              <h3 class="pillar__title">Expert à votre service</h3>
-              <p class="pillar__desc">Conseil clair, diagnostic précis et intervention par un professionnel ND.</p>
+              <p class="tarif__price"><span class="tarif__from">à partir de</span>149&nbsp;€</p>
+              <ul class="tarif__points">
+                <li>Camion hydrocureur équipé</li>
+                <li>Nettoyage haute pression</li>
+                <li>Intervention d'urgence 24/7</li>
+                <li>Chantier propre et sécurisé</li>
+              </ul>
+              <a class="btn btn--primary" href="tel:+33746368799">Demander ce service</a>
             </li>
 
-            <li class="pillar reveal" role="listitem">
-              <div class="pillar__icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                  <path d="M12 3l2.4 4.8 5.4.8-3.9 3.8.9 5.4L12 15.8 7.2 17.8l.9-5.4L4.2 8.6l5.4-.8L12 3z" />
-                </svg>
+            <li class="tarif reveal" role="listitem">
+              <div class="tarif__head">
+                <h3 class="tarif__name">Pompage &amp; curage</h3>
+                <p class="tarif__tagline">Fosses · puisards · réseaux</p>
               </div>
-              <h3 class="pillar__title">Satisfaction garantie</h3>
-              <p class="pillar__desc">Résultat contrôlé avant départ — votre tranquillité est notre priorité.</p>
+              <p class="tarif__price"><span class="tarif__from">sur devis</span>Gratuit</p>
+              <ul class="tarif__points">
+                <li>Évaluation personnalisée</li>
+                <li>Passage de caméra inclus</li>
+                <li>Évacuation conforme des déchets</li>
+              </ul>
+              <a class="btn btn--outline" href="mailto:normandiedebouche@gmail.com">Obtenir un devis</a>
             </li>
           </ul>
+
+          <p class="tarifs__note reveal">
+            Les tarifs varient selon la nature et l'accès à l'intervention. Le prix exact vous est
+            communiqué avant le début des travaux — sans engagement.
+          </p>
+        </div>
+      </section>
+
+      <section id="avis" class="section section--avis" aria-labelledby="avis-title">
+        <div class="section__inner">
+          <header class="section__head reveal">
+            <p class="section__eyebrow">ND</p>
+            <h2 id="avis-title" class="section__title">Avis de nos clients</h2>
+            <p class="section__lede">
+              La satisfaction de nos clients fait notre réputation en Normandie. Voici ce qu'ils
+              pensent de nos interventions.
+            </p>
+          </header>
+
+          <ul class="avis" role="list">
+            <li class="avis-card reveal" role="listitem">
+              <div class="avis-card__stars" aria-label="Note : 5 sur 5">★★★★★</div>
+              <p class="avis-card__text">
+                « Intervention ultra rapide un dimanche soir pour un WC bouché. Travail propre et
+                tarif annoncé respecté. Je recommande vivement. »
+              </p>
+              <div class="avis-card__author">
+                <span class="avis-card__avatar" aria-hidden="true">SL</span>
+                <div>
+                  <p class="avis-card__name">Sophie L.</p>
+                  <p class="avis-card__place">Rouen</p>
+                </div>
+              </div>
+            </li>
+
+            <li class="avis-card reveal" role="listitem">
+              <div class="avis-card__stars" aria-label="Note : 5 sur 5">★★★★★</div>
+              <p class="avis-card__text">
+                « Dégorgement d'une canalisation principale dans notre copropriété. Équipe
+                professionnelle, matériel impressionnant et chantier impeccable. »
+              </p>
+              <div class="avis-card__author">
+                <span class="avis-card__avatar" aria-hidden="true">MD</span>
+                <div>
+                  <p class="avis-card__name">Marc D.</p>
+                  <p class="avis-card__place">Le Havre</p>
+                </div>
+              </div>
+            </li>
+
+            <li class="avis-card reveal" role="listitem">
+              <div class="avis-card__stars" aria-label="Note : 5 sur 5">★★★★★</div>
+              <p class="avis-card__text">
+                « Passage de caméra puis curage de la fosse. Diagnostic clair, devis détaillé et
+                explications à chaque étape. Très satisfaite du service. »
+              </p>
+              <div class="avis-card__author">
+                <span class="avis-card__avatar" aria-hidden="true">CN</span>
+                <div>
+                  <p class="avis-card__name">Camille N.</p>
+                  <p class="avis-card__place">Caen</p>
+                </div>
+              </div>
+            </li>
+          </ul>
+
+          <div class="partners reveal" aria-label="Ils nous font confiance">
+            <p class="partners__label">Ils nous font confiance &amp; ont travaillé avec nous</p>
+            <div class="partners__marquee">
+              <div class="partners__track">
+                <ul class="partners__group" role="list">
+                  <li class="partners__logo">
+                    <svg viewBox="0 0 150 32" role="img" aria-label="Logoipsum">
+                      <circle cx="14" cy="16" r="11" fill="none" stroke="currentColor" stroke-width="3" />
+                      <circle cx="14" cy="16" r="4" fill="currentColor" />
+                      <text x="34" y="22" font-family="Segoe UI, sans-serif" font-size="18" font-weight="700" fill="currentColor">logoipsum</text>
+                    </svg>
+                  </li>
+                  <li class="partners__logo">
+                    <svg viewBox="0 0 150 32" role="img" aria-label="Logoipsum">
+                      <path d="M5 26 L14 6 L23 26 M9 18 L19 18" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round" />
+                      <text x="34" y="22" font-family="Segoe UI, sans-serif" font-size="18" font-weight="700" fill="currentColor">Logoipsum</text>
+                    </svg>
+                  </li>
+                  <li class="partners__logo">
+                    <svg viewBox="0 0 150 32" role="img" aria-label="Logoipsum">
+                      <rect x="5" y="7" width="18" height="18" rx="4" fill="none" stroke="currentColor" stroke-width="3" transform="rotate(45 14 16)" />
+                      <text x="34" y="22" font-family="Segoe UI, sans-serif" font-size="18" font-weight="700" fill="currentColor">Logoipsum</text>
+                    </svg>
+                  </li>
+                  <li class="partners__logo">
+                    <svg viewBox="0 0 150 32" role="img" aria-label="Logoipsum">
+                      <path d="M5 16 a9 9 0 0 1 18 0 a9 9 0 0 1 -18 0 M14 7 v18" fill="none" stroke="currentColor" stroke-width="3" />
+                      <text x="34" y="22" font-family="Segoe UI, sans-serif" font-size="18" font-weight="700" fill="currentColor">logoipsum</text>
+                    </svg>
+                  </li>
+                  <li class="partners__logo">
+                    <svg viewBox="0 0 150 32" role="img" aria-label="Logoipsum">
+                      <path d="M14 4 L24 11 L20 26 L8 26 L4 11 Z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round" />
+                      <text x="34" y="22" font-family="Segoe UI, sans-serif" font-size="18" font-weight="700" fill="currentColor">Logoipsum</text>
+                    </svg>
+                  </li>
+                  <li class="partners__logo">
+                    <svg viewBox="0 0 150 32" role="img" aria-label="Logoipsum">
+                      <circle cx="9" cy="16" r="5" fill="currentColor" />
+                      <circle cx="19" cy="16" r="5" fill="none" stroke="currentColor" stroke-width="3" />
+                      <text x="34" y="22" font-family="Segoe UI, sans-serif" font-size="18" font-weight="700" fill="currentColor">logoipsum</text>
+                    </svg>
+                  </li>
+                </ul>
+                <ul class="partners__group" role="list" aria-hidden="true">
+                  <li class="partners__logo">
+                    <svg viewBox="0 0 150 32" role="img" aria-label="Logoipsum">
+                      <circle cx="14" cy="16" r="11" fill="none" stroke="currentColor" stroke-width="3" />
+                      <circle cx="14" cy="16" r="4" fill="currentColor" />
+                      <text x="34" y="22" font-family="Segoe UI, sans-serif" font-size="18" font-weight="700" fill="currentColor">logoipsum</text>
+                    </svg>
+                  </li>
+                  <li class="partners__logo">
+                    <svg viewBox="0 0 150 32" role="img" aria-label="Logoipsum">
+                      <path d="M5 26 L14 6 L23 26 M9 18 L19 18" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round" />
+                      <text x="34" y="22" font-family="Segoe UI, sans-serif" font-size="18" font-weight="700" fill="currentColor">Logoipsum</text>
+                    </svg>
+                  </li>
+                  <li class="partners__logo">
+                    <svg viewBox="0 0 150 32" role="img" aria-label="Logoipsum">
+                      <rect x="5" y="7" width="18" height="18" rx="4" fill="none" stroke="currentColor" stroke-width="3" transform="rotate(45 14 16)" />
+                      <text x="34" y="22" font-family="Segoe UI, sans-serif" font-size="18" font-weight="700" fill="currentColor">Logoipsum</text>
+                    </svg>
+                  </li>
+                  <li class="partners__logo">
+                    <svg viewBox="0 0 150 32" role="img" aria-label="Logoipsum">
+                      <path d="M5 16 a9 9 0 0 1 18 0 a9 9 0 0 1 -18 0 M14 7 v18" fill="none" stroke="currentColor" stroke-width="3" />
+                      <text x="34" y="22" font-family="Segoe UI, sans-serif" font-size="18" font-weight="700" fill="currentColor">logoipsum</text>
+                    </svg>
+                  </li>
+                  <li class="partners__logo">
+                    <svg viewBox="0 0 150 32" role="img" aria-label="Logoipsum">
+                      <path d="M14 4 L24 11 L20 26 L8 26 L4 11 Z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round" />
+                      <text x="34" y="22" font-family="Segoe UI, sans-serif" font-size="18" font-weight="700" fill="currentColor">Logoipsum</text>
+                    </svg>
+                  </li>
+                  <li class="partners__logo">
+                    <svg viewBox="0 0 150 32" role="img" aria-label="Logoipsum">
+                      <circle cx="9" cy="16" r="5" fill="currentColor" />
+                      <circle cx="19" cy="16" r="5" fill="none" stroke="currentColor" stroke-width="3" />
+                      <text x="34" y="22" font-family="Segoe UI, sans-serif" font-size="18" font-weight="700" fill="currentColor">logoipsum</text>
+                    </svg>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="faq" class="section section--faq" aria-labelledby="faq-title">
+        <div class="section__inner faq-layout">
+          <header class="faq-intro reveal">
+            <p class="section__eyebrow">ND</p>
+            <h2 id="faq-title" class="section__title">Questions fréquentes</h2>
+            <p class="section__lede">
+              Vous vous posez des questions avant de nous appeler ? Retrouvez ici les réponses aux
+              demandes les plus courantes.
+            </p>
+          </header>
+
+          <div class="faq reveal">
+            <details class="faq__item">
+              <summary class="faq__question">
+                Intervenez-vous vraiment 24h/24 et 7j/7 ?
+                <span class="faq__icon" aria-hidden="true"></span>
+              </summary>
+              <div class="faq__answer">
+                <p>
+                  Oui. Une urgence (canalisation bouchée, dégât des eaux, refoulement) ne prévient
+                  pas — nous sommes joignables jour et nuit, week-ends et jours fériés compris, sur
+                  toute la Normandie.
+                </p>
+              </div>
+            </details>
+
+            <details class="faq__item">
+              <summary class="faq__question">
+                Le devis est-il gratuit ?
+                <span class="faq__icon" aria-hidden="true"></span>
+              </summary>
+              <div class="faq__answer">
+                <p>
+                  Absolument. Nous évaluons votre besoin et vous communiquons un prix clair avant
+                  toute intervention. Aucun travail n'est lancé sans votre accord.
+                </p>
+              </div>
+            </details>
+
+            <details class="faq__item">
+              <summary class="faq__question">
+                Quels secteurs couvrez-vous ?
+                <span class="faq__icon" aria-hidden="true"></span>
+              </summary>
+              <div class="faq__answer">
+                <p>
+                  Nous intervenons sur l'ensemble de la Normandie, auprès des particuliers, des
+                  professionnels et des collectivités. Contactez-nous pour confirmer un délai sur
+                  votre commune.
+                </p>
+              </div>
+            </details>
+
+            <details class="faq__item">
+              <summary class="faq__question">
+                Quels moyens de paiement acceptez-vous ?
+                <span class="faq__icon" aria-hidden="true"></span>
+              </summary>
+              <div class="faq__answer">
+                <p>
+                  Nous acceptons les principaux moyens de paiement (espèces, carte, virement). Une
+                  facture détaillée vous est systématiquement remise après l'intervention.
+                </p>
+              </div>
+            </details>
+
+            <details class="faq__item">
+              <summary class="faq__question">
+                Le chantier est-il laissé propre après l'intervention ?
+                <span class="faq__icon" aria-hidden="true"></span>
+              </summary>
+              <div class="faq__answer">
+                <p>
+                  Oui, c'est l'un de nos engagements. Nous protégeons les lieux, utilisons du
+                  matériel adapté et laissons systématiquement votre espace propre et sécurisé.
+                </p>
+              </div>
+            </details>
+          </div>
         </div>
       </section>
 
@@ -349,16 +690,6 @@
     </main>
 
     <footer class="footer" role="contentinfo">
-      <figure class="footer__banner">
-        <img
-          src="./assets/banner.png"
-          width="1200"
-          height="700"
-          alt="Normandie Débouche — véhicule, services, engagements et coordonnées"
-          loading="lazy"
-          decoding="async"
-        />
-      </figure>
       <div class="footer__bar">
         <div class="footer__inner">
           <img class="footer__logo" src="./assets/logo.png" width="64" height="64" alt="" />
@@ -375,6 +706,16 @@
             <a href="mailto:normandiedebouche@gmail.com">normandiedebouche@gmail.com</a>
             <span class="footer__dispo">24/24 · 7/7</span>
           </div>
+          <figure class="footer__banner">
+            <img
+              src="./assets/banner.png"
+              width="1200"
+              height="700"
+              alt="Normandie Débouche — véhicule, services, engagements et coordonnées"
+              loading="lazy"
+              decoding="async"
+            />
+          </figure>
         </div>
         <p class="footer__copy">© <span data-year></span> Normandie Débouche — Tous droits réservés.</p>
       </div>

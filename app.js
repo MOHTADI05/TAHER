@@ -74,6 +74,166 @@ function wireForm() {
   });
 }
 
+function wireFaq() {
+  const items = [...document.querySelectorAll(".faq__item")];
+  if (!items.length) return;
+
+  items.forEach((item) => {
+    const summary = item.querySelector(".faq__question");
+    const answer = item.querySelector(".faq__answer");
+    if (!summary || !answer) return;
+
+    summary.addEventListener("click", (e) => {
+      e.preventDefault();
+
+      const isOpen = item.hasAttribute("open");
+
+      items.forEach((other) => {
+        if (other !== item) other.removeAttribute("open");
+      });
+
+      if (isOpen) {
+        item.removeAttribute("open");
+      } else {
+        item.setAttribute("open", "");
+        if (!prefersReduced) {
+          answer.animate(
+            [
+              { opacity: 0, transform: "translateY(-6px)" },
+              { opacity: 1, transform: "translateY(0)" },
+            ],
+            { duration: 240, easing: "cubic-bezier(0.16, 1, 0.3, 1)" }
+          );
+        }
+      }
+    });
+  });
+}
+
+function wireServicesList() {
+  const list = document.querySelector(".svc-list");
+  if (!list) return;
+
+  const items = [...list.querySelectorAll(".svc-item")];
+  if (!items.length) return;
+
+  items.forEach((item) => {
+    const head = item.querySelector(".svc-item__head");
+    if (!head) return;
+
+    head.addEventListener("click", () => {
+      const wasOpen = item.classList.contains("is-open");
+
+      items.forEach((other) => {
+        other.classList.remove("is-open");
+        other.querySelector(".svc-item__head")?.setAttribute("aria-expanded", "false");
+      });
+
+      if (!wasOpen) {
+        item.classList.add("is-open");
+        head.setAttribute("aria-expanded", "true");
+      }
+    });
+  });
+}
+
+function wireTarifsSpread() {
+  const list = document.querySelector(".tarifs");
+  if (!list) return;
+
+  const cards = [...list.querySelectorAll(".tarif")];
+  if (cards.length < 2) return;
+
+  const featured = cards.findIndex((c) => c.classList.contains("tarif--featured"));
+  const center = featured >= 0 ? featured : Math.floor(cards.length / 2);
+
+  let baseOffsets = [];
+  let active = false;
+  let ticking = false;
+
+  const canSpread = () => !prefersReduced && window.innerWidth >= 760;
+
+  function clearTransforms() {
+    cards.forEach((c) => {
+      c.style.transform = "";
+      c.style.zIndex = "";
+    });
+    list.classList.remove("is-spread");
+  }
+
+  function measure() {
+    const prev = cards.map((c) => c.style.transform);
+    cards.forEach((c) => (c.style.transform = "none"));
+    const cRect = list.getBoundingClientRect();
+    const centerX = cRect.left + cRect.width / 2;
+    baseOffsets = cards.map((c) => {
+      const r = c.getBoundingClientRect();
+      return r.left + r.width / 2 - centerX;
+    });
+    cards.forEach((c, i) => (c.style.transform = prev[i] || ""));
+  }
+
+  function apply() {
+    ticking = false;
+    if (!active) return;
+
+    const rect = list.getBoundingClientRect();
+    const vh = window.innerHeight;
+    const start = vh * 0.92;
+    const end = vh * 0.42;
+    const p = clamp((start - rect.top) / (start - end), 0, 1);
+    const inv = 1 - p;
+
+    list.classList.add("is-spread");
+
+    cards.forEach((card, i) => {
+      const tx = -baseOffsets[i] * inv;
+
+      if (i === center) {
+        card.style.transform = `translateX(${tx}px) scale(${1 + 0.04 * inv})`;
+        card.style.zIndex = "5";
+        return;
+      }
+
+      const dir = i < center ? -1 : 1;
+      const scale = 1 - 0.1 * inv;
+      const ty = 16 * inv;
+      const rot = dir * 5 * inv;
+      card.style.transform = `translateX(${tx}px) translateY(${ty}px) scale(${scale}) rotate(${rot}deg)`;
+      card.style.zIndex = String(3 - Math.abs(i - center));
+    });
+  }
+
+  function requestTick() {
+    if (!ticking) {
+      ticking = true;
+      requestAnimationFrame(apply);
+    }
+  }
+
+  function setMode() {
+    active = canSpread();
+    if (active) {
+      measure();
+      requestTick();
+    } else {
+      clearTransforms();
+    }
+  }
+
+  setMode();
+
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (active) requestTick();
+    },
+    { passive: true }
+  );
+
+  window.addEventListener("resize", setMode);
+}
+
 function clamp(v, min, max) {
   return Math.min(max, Math.max(min, v));
 }
@@ -86,33 +246,33 @@ function lerp(a, b, t) {
 function cardMorph(segmentT) {
   const t = clamp(segmentT, 0, 1);
 
-  if (t < 0.14) {
-    const p = t / 0.14;
+  if (t < 0.34) {
+    const p = t / 0.34;
     return {
-      opacity: p,
-      y: lerp(72, 0, p),
-      z: lerp(-120, 0, p),
-      scale: lerp(0.88, 1, p),
-      rx: lerp(12, 0, p),
-      blur: lerp(6, 0, p),
-      interactive: p > 0.5,
+      opacity: Math.min(1, p * 1.3),
+      y: lerp(140, 0, p),
+      z: lerp(-320, 0, p),
+      scale: lerp(0.7, 1, p),
+      rx: lerp(16, 0, p),
+      blur: lerp(10, 0, p),
+      interactive: p > 0.6,
     };
   }
 
-  if (t > 0.86) {
-    const p = (t - 0.86) / 0.14;
+  if (t > 0.7) {
+    const p = (t - 0.7) / 0.3;
     return {
       opacity: 1 - p,
-      y: lerp(0, -64, p),
-      z: lerp(0, -80, p),
-      scale: lerp(1, 0.94, p),
-      rx: lerp(0, -8, p),
-      blur: lerp(0, 5, p),
+      y: lerp(0, -110, p),
+      z: lerp(0, -220, p),
+      scale: lerp(1, 0.82, p),
+      rx: lerp(0, -12, p),
+      blur: lerp(0, 8, p),
       interactive: p < 0.4,
     };
   }
 
-  const hold = (t - 0.14) / 0.72;
+  const hold = (t - 0.34) / 0.36;
   return {
     opacity: 1,
     y: Math.sin(hold * Math.PI) * -4,
@@ -128,11 +288,10 @@ function cardMorph(segmentT) {
   };
 }
 
-function wireServicesParallax() {
-  const scene = document.querySelector(".services-scene");
+function wireParallaxScene(scene) {
   const sticky = scene?.querySelector(".services-scene__sticky");
-  const dots = [...document.querySelectorAll(".services-progress__dot")];
-  const cards = [...document.querySelectorAll(".service-card")];
+  const dots = [...scene.querySelectorAll(".services-progress__dot")];
+  const cards = [...scene.querySelectorAll(".service-card")];
   if (!scene || !sticky || !cards.length) return;
 
   const count = cards.length;
@@ -250,8 +409,15 @@ function wireServicesParallax() {
   }
 }
 
+function wireServicesParallax() {
+  document.querySelectorAll(".services-scene").forEach(wireParallaxScene);
+}
+
 wireFooterYear();
 wireSmoothAnchors();
 wireReveals();
 wireForm();
+wireFaq();
+wireServicesList();
+wireTarifsSpread();
 wireServicesParallax();
