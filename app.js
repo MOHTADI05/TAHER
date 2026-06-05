@@ -8,6 +8,43 @@ function wireFooterYear() {
   if (el) el.textContent = String(new Date().getFullYear());
 }
 
+function wireNav() {
+  const toggle = document.querySelector(".nav-toggle");
+  const nav = document.getElementById("primary-nav");
+  if (!toggle || !nav) return;
+
+  const close = () => {
+    nav.classList.remove("is-open");
+    toggle.setAttribute("aria-expanded", "false");
+    toggle.setAttribute("aria-label", "Ouvrir le menu");
+  };
+
+  const open = () => {
+    nav.classList.add("is-open");
+    toggle.setAttribute("aria-expanded", "true");
+    toggle.setAttribute("aria-label", "Fermer le menu");
+  };
+
+  toggle.addEventListener("click", () => {
+    if (nav.classList.contains("is-open")) close();
+    else open();
+  });
+
+  nav.addEventListener("click", (e) => {
+    if (e.target?.closest?.("a")) close();
+  });
+
+  document.addEventListener("click", (e) => {
+    if (!nav.classList.contains("is-open")) return;
+    if (e.target.closest(".topbar__inner")) return;
+    close();
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") close();
+  });
+}
+
 function wireSmoothAnchors() {
   if (prefersReduced) return;
 
@@ -413,7 +450,64 @@ function wireServicesParallax() {
   document.querySelectorAll(".services-scene").forEach(wireParallaxScene);
 }
 
+function formatStat(value) {
+  if (value >= 1000) return value.toLocaleString("fr-FR");
+  return String(value);
+}
+
+function runCounter(stat) {
+  const numEl = stat.querySelector(".why-stat__num");
+  const target = Number(stat.dataset.count || 0);
+  const suffix = stat.dataset.suffix || "";
+  if (!numEl || !target) {
+    if (numEl) numEl.textContent = `${formatStat(target)}${suffix}`;
+    return;
+  }
+
+  if (prefersReduced) {
+    numEl.textContent = `${formatStat(target)}${suffix}`;
+    return;
+  }
+
+  const duration = 1600;
+  const start = performance.now();
+
+  function tick(now) {
+    const p = clamp((now - start) / duration, 0, 1);
+    const eased = 1 - Math.pow(1 - p, 3);
+    const current = Math.round(target * eased);
+    numEl.textContent = `${formatStat(current)}${suffix}`;
+    if (p < 1) requestAnimationFrame(tick);
+  }
+
+  requestAnimationFrame(tick);
+}
+
+function wireCounters() {
+  const stats = [...document.querySelectorAll(".why-stat[data-count]")];
+  if (!stats.length) return;
+
+  if (prefersReduced || !("IntersectionObserver" in window)) {
+    stats.forEach(runCounter);
+    return;
+  }
+
+  const io = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        runCounter(entry.target);
+        io.unobserve(entry.target);
+      }
+    },
+    { threshold: 0.4 }
+  );
+
+  stats.forEach((stat) => io.observe(stat));
+}
+
 wireFooterYear();
+wireNav();
 wireSmoothAnchors();
 wireReveals();
 wireForm();
@@ -421,3 +515,4 @@ wireFaq();
 wireServicesList();
 wireTarifsSpread();
 wireServicesParallax();
+wireCounters();

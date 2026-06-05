@@ -9,6 +9,14 @@
       name="description"
       content="Normandie Débouche — assainissement, plomberie, dégorgement, curage, passage de caméra et pompage. Intervention 24h/24, 7j/7."
     />
+    <link rel="icon" type="image/png" href="./assets/logo.png" />
+    <link rel="apple-touch-icon" href="./assets/logo.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
@@ -22,6 +30,7 @@
       <span class="urgence__label">Intervention d'urgence en Normandie</span>
       <a class="urgence__tel" href="tel:+33746368799">07 46 36 87 99</a>
     </div>
+    
 
     <header class="topbar" role="banner">
       <div class="topbar__inner">
@@ -29,7 +38,7 @@
           <img class="brand__logo" src="./assets/logo.png" width="96" height="96" alt="Logo Normandie Débouche ND" />
         </a>
 
-        <nav class="nav" aria-label="Navigation principale">
+        <nav class="nav" id="primary-nav" aria-label="Navigation principale">
           <a href="#services">Services</a>
           <a href="#tarifs">Tarifs</a>
           <a href="#avis">Avis</a>
@@ -39,43 +48,78 @@
 
         <div class="topbar__actions">
           <a class="btn btn--primary" href="tel:+33746368799">Appeler maintenant</a>
+          <button
+            class="nav-toggle"
+            type="button"
+            aria-label="Ouvrir le menu"
+            aria-expanded="false"
+            aria-controls="primary-nav"
+          >
+            <span class="nav-toggle__bar"></span>
+            <span class="nav-toggle__bar"></span>
+            <span class="nav-toggle__bar"></span>
+          </button>
         </div>
       </div>
     </header>
 
     <main id="main" class="main" role="main">
       <section class="hero" aria-label="Présentation">
+        <video
+          class="hero__video"
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="auto"
+          poster="./assets/camion.jpg"
+          aria-hidden="true"
+        >
+          <source src="./assets/pomp.mp4" type="video/mp4" />
+        </video>
         <div class="hero__overlay" aria-hidden="true"></div>
         <div class="hero__inner">
-      
-          <!-- ✅ Aside moved outside hero__main -->
-          <aside class="hero__aside reveal" aria-label="Nos services">
-            <div class="hero__marquee">
-              <div class="hero__marquee-track">
-                <p class="hero__tag">
-                  Assainissement · Plomberie · Dégorgement · Curage · Passage de caméra · Pompage · 24/24 · 7/7
-                </p>
-                <p class="hero__tag" aria-hidden="true">
-                  Assainissement · Plomberie · Dégorgement · Curage · Passage de caméra · Pompage · 24/24 · 7/7
-                </p>
-              </div>
-            </div>
-          </aside>
-      
+      <br></br>
+      <br></br>
+    
           <div class="hero__grid">
             <div class="hero__main">
-              <p class="hero__kicker reveal">ND · Assainissement</p>
+              <div class="hero__cta reveal">
+                <a class="btn btn--primary btn--lg" href="tel:+33746368799">07 46 36 87 99</a>
+                </div>
               <h1 class="hero__title reveal">
                 <span class="hero__line hero__line--green">Normandie</span>
                 <span class="hero__line hero__line--blue">Débouche</span>
               </h1>
-              <p class="hero__slogan reveal">
-                Normandie à vos côtés,<br />
-                <em>nous débouchons vos soucis !</em>
-              </p>
-              <div class="hero__cta reveal">
-                <a class="btn btn--primary btn--lg" href="tel:+33746368799">07 46 36 87 99</a>
-                <a class="btn btn--outline btn--lg" href="mailto:normandiedebouche@gmail.com">Envoyer un e-mail</a>
+
+              <ul class="hero__chips reveal" aria-label="Nos services">
+                <li class="hero__chip">Assainissement</li>
+                <li class="hero__chip">Plomberie</li>
+                <li class="hero__chip">Dégorgement</li>
+                <li class="hero__chip">Curage</li>
+                <li class="hero__chip">Passage de caméra</li>
+                <li class="hero__chip">Pompage</li>
+                <li class="hero__chip hero__chip--accent">24/24 · 7/7</li>
+              </ul>
+              <div class="hero__stats reveal">
+                <div class="hero-stat">
+                  <p class="why-stat hero-stat__value" data-count="4000" data-suffix="+">
+                    <span class="why-stat__num">0</span>
+                  </p>
+                  <p class="hero-stat__label">Interventions réalisées</p>
+                </div>
+                <div class="hero-stat">
+                  <p class="why-stat hero-stat__value" data-count="15" data-suffix="+">
+                    <span class="why-stat__num">0</span>
+                  </p>
+                  <p class="hero-stat__label">Ans d'expérience</p>
+                </div>
+                <div class="hero-stat">
+                  <p class="why-stat hero-stat__value" data-count="98" data-suffix="%">
+                    <span class="why-stat__num">0</span>
+                  </p>
+                  <p class="hero-stat__label">Clients satisfaits</p>
+                </div>
               </div>
             </div>
           </div>
@@ -242,6 +286,71 @@
             </article>
           </div>
 
+        </div>
+      </section>
+
+      <section id="atouts" class="section section--why" aria-labelledby="why-title">
+        <div class="section__inner why">
+          <div class="why__top reveal">
+            <span class="why__badge">Pourquoi nous choisir</span>
+            <h2 id="why-title" class="why__heading">
+              La propreté et la conformité de vos réseaux sont au cœur de notre mission
+            </h2>
+          </div>
+
+          <div class="why__grid">
+            <article class="why-card why-card--stat reveal">
+              <div class="why-card__left">
+                <figure class="why-card__media">
+                  <img
+                    src="./assets/camion.jpeg"
+                    width="640"
+                    height="420"
+                    alt="Camion d'assainissement Normandie Débouche"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </figure>
+                <a class="btn btn--primary" href="#contact">Contactez-nous</a>
+              </div>
+              <div class="why-card__body">
+                <p class="why-stat" data-count="4000" data-suffix="+">
+                  <span class="why-stat__num">0</span>
+                </p>
+                <p class="why-card__label">Interventions réalisées</p>
+                <p class="why-card__text">
+                  Débouchage, curage, pompage et assainissement chez les particuliers, professionnels
+                  et collectivités.
+                </p>
+                <p class="why-card__brand">
+                  <span class="text-green">Normandie</span>
+                  <span class="text-blue">Débouche</span>
+                </p>
+              </div>
+            </article>
+
+            <article class="why-card why-card--feature reveal">
+              <video
+                class="why-card__video"
+                src="./assets/3999401-hd_1920_1080_24fps.mp4"
+                poster="./assets/camion.jpeg"
+                autoplay
+                muted
+                loop
+                playsinline
+                preload="metadata"
+                aria-hidden="true"
+              ></video>
+              <div class="why-card__overlay">
+                <p class="why-stat why-stat--big" data-count="99" data-suffix="%">
+                  <span class="why-stat__num">0</span>
+                </p>
+                <p class="why-card__label why-card__label--light">
+                  Satisfaction dès la première intervention
+                </p>
+              </div>
+            </article>
+          </div>
         </div>
       </section>
 
@@ -676,6 +785,34 @@
               <input class="field__input" name="phone" type="tel" autocomplete="tel" required />
             </label>
             <label class="field">
+              <span class="field__label">Code postal</span>
+              <input
+                class="field__input"
+                name="postal"
+                type="text"
+                inputmode="numeric"
+                pattern="[0-9]{5}"
+                maxlength="5"
+                autocomplete="postal-code"
+                placeholder="76000"
+                required
+              />
+            </label>
+            <label class="field">
+              <span class="field__label">Votre problème</span>
+              <select class="field__input field__select" name="problem" required>
+                <option value="" disabled selected>Sélectionnez votre besoin</option>
+                <option value="debouchage">Débouchage de canalisation</option>
+                <option value="degorgement">Dégorgement WC &amp; évier</option>
+                <option value="curage">Curage haute pression</option>
+                <option value="fosse">Vidange fosse septique</option>
+                <option value="camera">Inspection caméra</option>
+                <option value="pompage">Pompage &amp; assainissement</option>
+                <option value="plomberie">Plomberie</option>
+                <option value="autre">Autre / Urgence</option>
+              </select>
+            </label>
+            <label class="field">
               <span class="field__label">Décrivez votre besoin</span>
               <textarea class="field__input field__textarea" name="message" rows="4" required></textarea>
             </label>
@@ -685,6 +822,37 @@
               <a href="tel:+33746368799">07 46 36 87 99</a>.
             </p>
           </form>
+
+          <div class="contact__visual">
+            <figure class="contact__visual-img">
+              <img
+                src="./assets/CartV.jpeg"
+                width="1024"
+                height="576"
+                alt="Normandie Débouche — véhicule, services, engagements et coordonnées"
+                loading="lazy"
+                decoding="async"
+              />
+            </figure>
+
+            <div class="contact__pitch">
+              <p class="contact__pitch-title">Débouchage &amp; assainissement en Normandie</p>
+              <p class="contact__pitch-text">
+                Canalisation bouchée, WC ou évier engorgé, fosse septique pleine&nbsp;? Nos experts
+                interviennent <strong>24h/24 et 7j/7</strong> pour le débouchage, le curage, le
+                pompage et la mise en conformité de vos réseaux.
+              </p>
+              <ul class="contact__keywords">
+                <li>Débouchage canalisation</li>
+                <li>Dégorgement WC &amp; évier</li>
+                <li>Curage haute pression</li>
+                <li>Vidange fosse septique</li>
+                <li>Inspection caméra</li>
+                <li>Pompage &amp; assainissement</li>
+              </ul>
+              <p class="contact__pitch-cta">Intervention rapide &amp; devis gratuit</p>
+            </div>
+          </div>
         </div>
       </section>
     </main>
@@ -706,17 +874,19 @@
             <a href="mailto:normandiedebouche@gmail.com">normandiedebouche@gmail.com</a>
             <span class="footer__dispo">24/24 · 7/7</span>
           </div>
-          <figure class="footer__banner">
-            <img
-              src="./assets/banner.png"
-              width="1200"
-              height="700"
-              alt="Normandie Débouche — véhicule, services, engagements et coordonnées"
-              loading="lazy"
-              decoding="async"
-            />
-          </figure>
         </div>
+
+        <div class="footer__map">
+          <iframe
+            class="footer__map-frame"
+            title="Zone d'intervention Normandie Débouche"
+            src="https://www.google.com/maps?q=Normandie,France&z=8&output=embed"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            allowfullscreen
+          ></iframe>
+        </div>
+
         <p class="footer__copy">© <span data-year></span> Normandie Débouche — Tous droits réservés.</p>
       </div>
     </footer>
