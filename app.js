@@ -8,6 +8,30 @@ function wireFooterYear() {
   if (el) el.textContent = String(new Date().getFullYear());
 }
 
+function wireDropdowns() {
+  const dropdowns = [...document.querySelectorAll(".nav__dropdown")];
+  if (!dropdowns.length) return;
+
+  dropdowns.forEach((dd) => {
+    const btn = dd.querySelector(".nav__dropbtn");
+    if (!btn) return;
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      const open = dd.classList.toggle("is-open");
+      btn.setAttribute("aria-expanded", open ? "true" : "false");
+    });
+  });
+
+  document.addEventListener("click", (e) => {
+    dropdowns.forEach((dd) => {
+      if (dd.classList.contains("is-open") && !dd.contains(e.target)) {
+        dd.classList.remove("is-open");
+        dd.querySelector(".nav__dropbtn")?.setAttribute("aria-expanded", "false");
+      }
+    });
+  });
+}
+
 function wireNav() {
   const toggle = document.querySelector(".nav-toggle");
   const nav = document.getElementById("primary-nav");
@@ -108,42 +132,6 @@ function wireForm() {
     );
 
     window.location.href = `mailto:normandiedebouche@gmail.com?subject=${subject}&body=${body}`;
-  });
-}
-
-function wireFaq() {
-  const items = [...document.querySelectorAll(".faq__item")];
-  if (!items.length) return;
-
-  items.forEach((item) => {
-    const summary = item.querySelector(".faq__question");
-    const answer = item.querySelector(".faq__answer");
-    if (!summary || !answer) return;
-
-    summary.addEventListener("click", (e) => {
-      e.preventDefault();
-
-      const isOpen = item.hasAttribute("open");
-
-      items.forEach((other) => {
-        if (other !== item) other.removeAttribute("open");
-      });
-
-      if (isOpen) {
-        item.removeAttribute("open");
-      } else {
-        item.setAttribute("open", "");
-        if (!prefersReduced) {
-          answer.animate(
-            [
-              { opacity: 0, transform: "translateY(-6px)" },
-              { opacity: 1, transform: "translateY(0)" },
-            ],
-            { duration: 240, easing: "cubic-bezier(0.16, 1, 0.3, 1)" }
-          );
-        }
-      }
-    });
   });
 }
 
@@ -508,11 +496,10 @@ function wireCounters() {
 
 wireFooterYear();
 wireNav();
+wireDropdowns();
 wireSmoothAnchors();
 wireReveals();
 wireForm();
-wireFaq();
 wireServicesList();
-wireTarifsSpread();
 wireServicesParallax();
 wireCounters();
