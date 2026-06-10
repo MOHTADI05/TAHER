@@ -38,9 +38,23 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
+      rel="preload"
+      as="image"
+      href="./assets/camion.jpeg"
+      fetchpriority="high"
     />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;600;700&family=Manrope:wght@400;600;700&display=swap"
+      media="print"
+      onload="this.media='all'"
+    />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;600;700&family=Manrope:wght@400;600;700&display=swap"
+      />
+    </noscript>
     <link rel="stylesheet" href="./styles.css" />
 
     <script type="application/ld+json">
@@ -97,7 +111,15 @@
     <header class="topbar" role="banner">
       <div class="topbar__inner">
         <a class="brand" href="#" aria-label="Normandie Débouche — accueil">
-          <img class="brand__logo" src="./assets/logo.png" width="68" height="68" alt="Logo Normandie Débouche ND" />
+          <img
+            class="brand__logo"
+            src="./assets/logo.png"
+            width="68"
+            height="68"
+            alt="Logo Normandie Débouche ND"
+            decoding="async"
+            fetchpriority="low"
+          />
         </a>
 
         <nav class="nav" id="primary-nav" aria-label="Navigation principale">
@@ -143,16 +165,14 @@
       <section class="hero" aria-label="Présentation">
         <video
           class="hero__video"
-          autoplay
           muted
           loop
           playsinline
-          preload="auto"
-          poster="./assets/camion.jpg"
+          preload="none"
+          poster="./assets/camion.jpeg"
+          data-src="./assets/3999401-hd_1920_1080_24fps.mp4"
           aria-hidden="true"
-        >
-          <source src="./assets/3999401-hd_1920_1080_24fps.mp4" type="video/mp4" />
-        </video>
+        ></video>
         <div class="hero__overlay" aria-hidden="true"></div>
         <div class="hero__inner">
           <div class="hero__grid">
@@ -429,13 +449,12 @@
             <article class="why-card why-card--feature reveal">
               <video
                 class="why-card__video"
-                src="./assets/pomp.mp4"
+                data-src="./assets/pomp.mp4"
                 poster="./assets/camion.jpeg"
-                autoplay
                 muted
                 loop
                 playsinline
-                preload="metadata"
+                preload="none"
                 aria-hidden="true"
               ></video>
               <div class="why-card__overlay">
@@ -1003,7 +1022,7 @@
               <iframe
                 class="contact__map-frame"
                 title="Zone d'intervention Normandie Débouche — Rouen, Le Havre, Caen, Évreux et toute la Normandie"
-                src="https://www.google.com/maps?q=Normandie,France&z=8&output=embed"
+                data-src="https://www.google.com/maps?q=Normandie,France&z=8&output=embed"
                 loading="lazy"
                 referrerpolicy="no-referrer-when-downgrade"
                 allowfullscreen
@@ -1067,6 +1086,6 @@
       </svg>
     </a>
 
-    <script src="./app.js"></script>
+    <script src="./app.js" defer></script>
   </body>
 </html>

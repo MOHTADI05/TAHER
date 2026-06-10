@@ -338,7 +338,7 @@ a {
   margin: 24px 12px 0;
   padding: 150px 16px 52px;
   min-height: min(620px, 92vh);
-  background: #dfe7ef url("./assets/camion.jpg") center 30% / cover no-repeat;
+  background: #dfe7ef url("./assets/camion.jpeg") center 30% / cover no-repeat;
   overflow: hidden;
   border-radius: 28px;
 }
@@ -2408,6 +2408,10 @@ a {
   font-size: 20px;
   font-weight: 900;
   font-style: italic;
+}
+
+.footer .text-blue {
+  color: #6db4ff;
 }
 
 .footer__meta {

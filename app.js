@@ -494,6 +494,79 @@ function wireCounters() {
   stats.forEach((stat) => io.observe(stat));
 }
 
+function wireLazyMedia() {
+  const heroVideo = document.querySelector(".hero__video[data-src]");
+  if (heroVideo && !prefersReduced) {
+    const heroSrc = heroVideo.dataset.src;
+    const loadHero = () => {
+      if (heroVideo.dataset.loaded || !heroSrc) return;
+      heroVideo.dataset.loaded = "true";
+      const source = document.createElement("source");
+      source.src = heroSrc;
+      source.type = "video/mp4";
+      heroVideo.appendChild(source);
+      heroVideo.load();
+      heroVideo.play().catch(() => {});
+    };
+    const scheduleHero = () => {
+      if ("requestIdleCallback" in window) {
+        requestIdleCallback(loadHero, { timeout: 3000 });
+      } else {
+        setTimeout(loadHero, 800);
+      }
+    };
+    if (document.readyState === "complete") scheduleHero();
+    else window.addEventListener("load", scheduleHero, { once: true });
+  }
+
+  const lazyVideos = [...document.querySelectorAll("video[data-src]:not(.hero__video)")];
+  if (lazyVideos.length) {
+    if ("IntersectionObserver" in window) {
+      const io = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            if (!entry.isIntersecting) continue;
+            const video = entry.target;
+            const src = video.dataset.src;
+            if (!src || video.dataset.loaded) continue;
+            video.dataset.loaded = "true";
+            video.src = src;
+            video.load();
+            video.play().catch(() => {});
+            io.unobserve(video);
+          }
+        },
+        { rootMargin: "240px" }
+      );
+      lazyVideos.forEach((video) => io.observe(video));
+    } else {
+      lazyVideos.forEach((video) => {
+        video.src = video.dataset.src || "";
+        video.play().catch(() => {});
+      });
+    }
+  }
+
+  const lazyFrames = [...document.querySelectorAll("iframe[data-src]")];
+  if (lazyFrames.length && "IntersectionObserver" in window) {
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue;
+          const frame = entry.target;
+          const src = frame.dataset.src;
+          if (!src || frame.dataset.loaded) continue;
+          frame.dataset.loaded = "true";
+          frame.src = src;
+          io.unobserve(frame);
+        }
+      },
+      { rootMargin: "120px" }
+    );
+    lazyFrames.forEach((frame) => io.observe(frame));
+  }
+}
+
 wireFooterYear();
 wireNav();
 wireDropdowns();
@@ -503,3 +576,4 @@ wireForm();
 wireServicesList();
 wireServicesParallax();
 wireCounters();
+wireLazyMedia();
