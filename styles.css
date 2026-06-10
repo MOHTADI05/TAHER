@@ -48,7 +48,6 @@ body {
   -webkit-font-smoothing: antialiased;
   width: 100%;
   max-width: 100%;
-  overflow-x: clip;
 }
 
 img {
@@ -2058,8 +2057,14 @@ a {
   transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.why-card--stat:hover .why-card__content {
+.why-card--stat:hover .why-card__content,
+.why-card--stat.is-flipped .why-card__content {
   transform: rotateX(0deg);
+}
+
+.why-card--stat.is-flipped .why-card__front {
+  transform: scale(0);
+  opacity: 0;
 }
 
 .why-card__content .btn {
@@ -2210,28 +2215,35 @@ a {
   }
 
   .why-card--stat:hover .why-card__content,
-  .why-card--stat:focus-within .why-card__content {
+  .why-card--stat:focus-within .why-card__content,
+  .why-card--stat.is-flipped .why-card__content {
     transform: none;
     opacity: 1;
   }
 
   .why-card--stat:hover .why-card__front,
-  .why-card--stat:focus-within .why-card__front {
+  .why-card--stat:focus-within .why-card__front,
+  .why-card--stat.is-flipped .why-card__front {
     transform: none;
     opacity: 0;
   }
 }
 
 @media (hover: none) {
+  .why-card--stat {
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+
   .why-card__front,
   .why-card__content {
-    transition: none;
+    transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+      opacity 0.45s ease;
   }
 
   .why-card__content {
-    transform: rotateX(0deg);
-    justify-content: flex-end;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 20%, rgba(255, 255, 255, 0.97) 68%);
+    transform: rotateX(-90deg);
+    background-color: #ffffff;
   }
 }
 
@@ -2620,6 +2632,12 @@ a {
   .hero {
     min-height: 0;
     background-position: center 40%;
+  }
+}
+
+@media (max-width: 768px) {
+  .services-scene--active {
+    --step: min(105vh, 720px);
   }
 }
 

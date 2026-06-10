@@ -1,7 +1,6 @@
 /* Normandie Débouche — interactions */
 
 const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-const STATIC_BREAKPOINT = 520;
 
 function wireFooterYear() {
   const el = document.querySelector("[data-year]");
@@ -326,7 +325,7 @@ function wireParallaxScene(scene) {
     icon: card.querySelector(".service__icon"),
   }));
 
-  const useStatic = () => prefersReduced || window.innerWidth < STATIC_BREAKPOINT;
+  const useStatic = () => prefersReduced;
 
   function setMode() {
     const staticMode = useStatic();
@@ -471,6 +470,41 @@ function runCounter(stat) {
   requestAnimationFrame(tick);
 }
 
+function wireWhyCardFlip() {
+  const cards = [...document.querySelectorAll(".why-card--stat")];
+  if (!cards.length) return;
+
+  const touchLike = window.matchMedia("(hover: none), (pointer: coarse)").matches;
+
+  cards.forEach((card) => {
+    if (touchLike) {
+      card.setAttribute("tabindex", "0");
+      card.setAttribute("role", "button");
+      card.setAttribute("aria-expanded", "false");
+      card.setAttribute("aria-label", "Afficher les statistiques — appuyez pour retourner la carte");
+    }
+
+    const toggle = () => {
+      const flipped = card.classList.toggle("is-flipped");
+      card.setAttribute("aria-expanded", flipped ? "true" : "false");
+    };
+
+    card.addEventListener("click", (e) => {
+      if (!touchLike) return;
+      if (e.target.closest("a")) return;
+      toggle();
+    });
+
+    card.addEventListener("keydown", (e) => {
+      if (!touchLike) return;
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        toggle();
+      }
+    });
+  });
+}
+
 function wireCounters() {
   const stats = [...document.querySelectorAll(".why-stat[data-count]")];
   if (!stats.length) return;
@@ -575,5 +609,6 @@ wireReveals();
 wireForm();
 wireServicesList();
 wireServicesParallax();
+wireWhyCardFlip();
 wireCounters();
 wireLazyMedia();
