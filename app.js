@@ -1,6 +1,15 @@
 /* Normandie Débouche — interactions */
 
 const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const MOBILE_MAX = 768;
+
+function scheduleIdle(fn, timeout = 2000) {
+  if ("requestIdleCallback" in window) {
+    requestIdleCallback(fn, { timeout });
+  } else {
+    setTimeout(fn, 50);
+  }
+}
 
 function wireFooterYear() {
   const el = document.querySelector("[data-year]");
@@ -325,7 +334,7 @@ function wireParallaxScene(scene) {
     icon: card.querySelector(".service__icon"),
   }));
 
-  const useStatic = () => prefersReduced;
+  const useStatic = () => prefersReduced || window.innerWidth <= MOBILE_MAX;
 
   function setMode() {
     const staticMode = useStatic();
@@ -434,7 +443,33 @@ function wireParallaxScene(scene) {
 }
 
 function wireServicesParallax() {
-  document.querySelectorAll(".services-scene").forEach(wireParallaxScene);
+  const scenes = [...document.querySelectorAll(".services-scene")];
+  if (!scenes.length) return;
+
+  scenes.forEach((scene) => {
+    if (prefersReduced || window.innerWidth <= MOBILE_MAX) {
+      scene.classList.add("services-scene--static");
+      return;
+    }
+
+    if (!("IntersectionObserver" in window)) {
+      wireParallaxScene(scene);
+      return;
+    }
+
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue;
+          wireParallaxScene(entry.target);
+          io.unobserve(entry.target);
+        }
+      },
+      { rootMargin: "320px" }
+    );
+
+    io.observe(scene);
+  });
 }
 
 function formatStat(value) {
@@ -528,32 +563,26 @@ function wireCounters() {
   stats.forEach((stat) => io.observe(stat));
 }
 
-function wireLazyMedia() {
-  const heroVideo = document.querySelector(".hero__video[data-src]");
-  if (heroVideo && !prefersReduced) {
-    const heroSrc = heroVideo.dataset.src;
-    const loadHero = () => {
-      if (heroVideo.dataset.loaded || !heroSrc) return;
-      heroVideo.dataset.loaded = "true";
-      const source = document.createElement("source");
-      source.src = heroSrc;
-      source.type = "video/mp4";
-      heroVideo.appendChild(source);
-      heroVideo.load();
-      heroVideo.play().catch(() => {});
-    };
-    const scheduleHero = () => {
-      if ("requestIdleCallback" in window) {
-        requestIdleCallback(loadHero, { timeout: 3000 });
-      } else {
-        setTimeout(loadHero, 800);
-      }
-    };
-    if (document.readyState === "complete") scheduleHero();
-    else window.addEventListener("load", scheduleHero, { once: true });
-  }
+function wireHeroVideo() {
+  const video = document.querySelector(".hero__video");
+  if (!video || prefersReduced || navigator.connection?.saveData) return;
 
-  const lazyVideos = [...document.querySelectorAll("video[data-src]:not(.hero__video)")];
+  const reveal = () => {
+    video.classList.add("is-playing");
+  };
+
+  video.addEventListener("loadeddata", reveal, { once: true });
+  video.addEventListener("playing", reveal, { once: true });
+
+  if (video.readyState >= 2) reveal();
+
+  const play = () => video.play().catch(() => {});
+  play();
+  video.addEventListener("canplay", play, { once: true });
+}
+
+function wireLazyMedia() {
+  const lazyVideos = [...document.querySelectorAll("video[data-src]")];
   if (lazyVideos.length) {
     if ("IntersectionObserver" in window) {
       const io = new IntersectionObserver(
@@ -605,10 +634,14 @@ wireFooterYear();
 wireNav();
 wireDropdowns();
 wireSmoothAnchors();
-wireReveals();
-wireForm();
-wireServicesList();
-wireServicesParallax();
-wireWhyCardFlip();
-wireCounters();
+wireHeroVideo();
 wireLazyMedia();
+
+scheduleIdle(() => {
+  wireReveals();
+  wireForm();
+  wireServicesList();
+  wireServicesParallax();
+  wireWhyCardFlip();
+  wireCounters();
+});

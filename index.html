@@ -38,12 +38,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      rel="preload"
-      as="image"
-      href="./assets/camion.jpeg"
-      fetchpriority="high"
-    />
-    <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;600;700&family=Manrope:wght@400;600;700&display=swap"
       media="print"
@@ -111,15 +105,18 @@
     <header class="topbar" role="banner">
       <div class="topbar__inner">
         <a class="brand" href="#" aria-label="Normandie Débouche — accueil">
-          <img
-            class="brand__logo"
-            src="./assets/logo.png"
-            width="68"
-            height="68"
-            alt="Logo Normandie Débouche ND"
-            decoding="async"
-            fetchpriority="low"
-          />
+          <picture>
+            <source srcset="./assets/logo-sm.webp" type="image/webp" />
+            <img
+              class="brand__logo"
+              src="./assets/logo.png"
+              width="68"
+              height="68"
+              alt="Logo Normandie Débouche ND"
+              decoding="async"
+              fetchpriority="low"
+            />
+          </picture>
         </a>
 
         <nav class="nav" id="primary-nav" aria-label="Navigation principale">
@@ -165,14 +162,16 @@
       <section class="hero" aria-label="Présentation">
         <video
           class="hero__video"
+          autoplay
           muted
           loop
           playsinline
-          preload="none"
-          poster="./assets/camion.jpeg"
-          data-src="./assets/3999401-hd_1920_1080_24fps.mp4"
+          preload="auto"
           aria-hidden="true"
-        ></video>
+        >
+          <source src="./assets/hero-bg-mobile.mp4" type="video/mp4" media="(max-width: 768px)" />
+          <source src="./assets/hero-bg.mp4" type="video/mp4" />
+        </video>
         <div class="hero__overlay" aria-hidden="true"></div>
         <div class="hero__inner">
           <div class="hero__grid">
@@ -254,7 +253,10 @@
                   </p>
                 </div>
                 <figure class="svc-item__media">
-                  <img src="./assets/services/assainissement.jpg" width="640" height="420" alt="Intervention d'assainissement Normandie Débouche" loading="lazy" decoding="async" />
+                  <picture>
+                    <source srcset="./assets/services/assainissement.webp" type="image/webp" />
+                    <img src="./assets/services/assainissement.jpg" width="640" height="420" alt="Intervention d'assainissement Normandie Débouche" loading="lazy" decoding="async" sizes="(max-width: 768px) 90vw, 400px" />
+                  </picture>
                 </figure>
               </div>
             </article>
@@ -278,7 +280,10 @@
                   </p>
                 </div>
                 <figure class="svc-item__media">
-                  <img src="./assets/services/plomberie.jpg" width="640" height="420" alt="Travaux de plomberie Normandie Débouche" loading="lazy" decoding="async" />
+                  <picture>
+                    <source srcset="./assets/services/plomberie.webp" type="image/webp" />
+                    <img src="./assets/services/plomberie.jpg" width="640" height="420" alt="Travaux de plomberie Normandie Débouche" loading="lazy" decoding="async" sizes="(max-width: 768px) 90vw, 400px" />
+                  </picture>
                 </figure>
               </div>
             </article>
@@ -302,7 +307,10 @@
                   </p>
                 </div>
                 <figure class="svc-item__media">
-                  <img src="./assets/services/degorgement.jpg" width="640" height="420" alt="Dégorgement de canalisation Normandie Débouche" loading="lazy" decoding="async" />
+                  <picture>
+                    <source srcset="./assets/services/degorgement.webp" type="image/webp" />
+                    <img src="./assets/services/degorgement.jpg" width="640" height="420" alt="Dégorgement de canalisation Normandie Débouche" loading="lazy" decoding="async" sizes="(max-width: 768px) 90vw, 400px" />
+                  </picture>
                 </figure>
               </div>
             </article>
@@ -326,7 +334,10 @@
                   </p>
                 </div>
                 <figure class="svc-item__media">
-                  <img src="./assets/services/curage.jpg" width="640" height="420" alt="Curage de canalisation Normandie Débouche" loading="lazy" decoding="async" />
+                  <picture>
+                    <source srcset="./assets/services/curage.webp" type="image/webp" />
+                    <img src="./assets/services/curage.jpg" width="640" height="420" alt="Curage de canalisation Normandie Débouche" loading="lazy" decoding="async" sizes="(max-width: 768px) 90vw, 400px" />
+                  </picture>
                 </figure>
               </div>
             </article>
@@ -350,7 +361,10 @@
                   </p>
                 </div>
                 <figure class="svc-item__media">
-                  <img src="./assets/services/camera.jpg" width="640" height="420" alt="Inspection caméra des canalisations Normandie Débouche" loading="lazy" decoding="async" />
+                  <picture>
+                    <source srcset="./assets/services/camera.webp" type="image/webp" />
+                    <img src="./assets/services/camera.jpg" width="640" height="420" alt="Inspection caméra des canalisations Normandie Débouche" loading="lazy" decoding="async" sizes="(max-width: 768px) 90vw, 400px" />
+                  </picture>
                 </figure>
               </div>
             </article>
@@ -374,7 +388,10 @@
                   </p>
                 </div>
                 <figure class="svc-item__media">
-                  <img src="./assets/services/pompage.jpg" width="640" height="420" alt="Pompage et vidange Normandie Débouche" loading="lazy" decoding="async" />
+                  <picture>
+                    <source srcset="./assets/services/pompage.webp" type="image/webp" />
+                    <img src="./assets/services/pompage.jpg" width="640" height="420" alt="Pompage et vidange Normandie Débouche" loading="lazy" decoding="async" sizes="(max-width: 768px) 90vw, 400px" />
+                  </picture>
                 </figure>
               </div>
             </article>
@@ -399,7 +416,10 @@
                   </p>
                 </div>
                 <figure class="svc-item__media">
-                  <img src="./assets/services/pompage.jpg" width="640" height="420" alt="Entretien et remplacement de pompe de relevage Normandie Débouche" loading="lazy" decoding="async" />
+                  <picture>
+                    <source srcset="./assets/services/pompage.webp" type="image/webp" />
+                    <img src="./assets/services/pompage.jpg" width="640" height="420" alt="Entretien et remplacement de pompe de relevage Normandie Débouche" loading="lazy" decoding="async" sizes="(max-width: 768px) 90vw, 400px" />
+                  </picture>
                 </figure>
               </div>
             </article>
@@ -420,14 +440,18 @@
           <div class="why__grid">
             <article class="why-card why-card--stat reveal">
               <figure class="why-card__front">
-                <img
-                  src="./assets/camion.jpeg"
-                  width="640"
-                  height="420"
-                  alt="Camion d'assainissement Normandie Débouche"
-                  loading="lazy"
-                  decoding="async"
-                />
+                <picture>
+                  <source srcset="./assets/camion-poster.webp" type="image/webp" />
+                  <img
+                    src="./assets/camion-poster.jpg"
+                    width="640"
+                    height="420"
+                    alt="Camion d'assainissement Normandie Débouche"
+                    loading="lazy"
+                    decoding="async"
+                    sizes="(max-width: 768px) 90vw, 400px"
+                  />
+                </picture>
               </figure>
               <div class="why-card__content">
                 <p class="why-stat" data-count="4000" data-suffix="+">
@@ -450,7 +474,7 @@
               <video
                 class="why-card__video"
                 data-src="./assets/pomp.mp4"
-                poster="./assets/camion.jpeg"
+                poster="./assets/camion-poster.jpg"
                 muted
                 loop
                 playsinline

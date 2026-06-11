@@ -337,7 +337,7 @@ a {
   margin: 24px 12px 0;
   padding: 150px 16px 52px;
   min-height: min(620px, 92vh);
-  background: #dfe7ef url("./assets/camion.jpeg") center 30% / cover no-repeat;
+  background: var(--blue-dark);
   overflow: hidden;
   border-radius: 28px;
 }
@@ -351,24 +351,31 @@ a {
   object-position: center 55%;
   z-index: 0;
   pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  filter: saturate(1.1) contrast(1.04) brightness(0.88);
+}
+
+.hero__video.is-playing {
+  opacity: 1;
 }
 
 .hero__overlay {
   position: absolute;
   inset: 0;
-  z-index: 0;
+  z-index: 1;
   background:
     linear-gradient(
-      180deg,
-      rgba(13, 27, 42, 0.55) 0%,
-      rgba(13, 27, 42, 0.3) 38%,
-      rgba(13, 27, 42, 0.55) 78%,
-      rgba(13, 27, 42, 0.72) 100%
+      145deg,
+      rgba(26, 75, 168, 0.78) 0%,
+      rgba(18, 58, 133, 0.62) 45%,
+      rgba(30, 143, 56, 0.72) 100%
     ),
-    radial-gradient(
-      120% 80% at 50% 50%,
-      transparent 40%,
-      rgba(13, 27, 42, 0.35) 100%
+    linear-gradient(
+      180deg,
+      rgba(26, 75, 168, 0.28) 0%,
+      transparent 42%,
+      rgba(30, 143, 56, 0.22) 100%
     );
   pointer-events: none;
 }
@@ -567,6 +574,11 @@ a {
 /* Sections */
 .section {
   padding: 56px 16px;
+}
+
+.section:not(.hero) {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 520px;
 }
 
 .section__inner {
