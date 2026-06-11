@@ -1,7 +1,7 @@
 {
   "headers": [
     {
-      "source": "/assets/(.*)",
+      "source": "/assets/:path*",
       "headers": [
         {
           "key": "Cache-Control",
@@ -10,7 +10,16 @@
       ]
     },
     {
-      "source": "/(.*\\.(css|js))",
+      "source": "/styles.css",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400, stale-while-revalidate=604800"
+        }
+      ]
+    },
+    {
+      "source": "/app.js",
       "headers": [
         {
           "key": "Cache-Control",
