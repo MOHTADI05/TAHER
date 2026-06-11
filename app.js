@@ -563,24 +563,6 @@ function wireCounters() {
   stats.forEach((stat) => io.observe(stat));
 }
 
-function wireHeroVideo() {
-  const video = document.querySelector(".hero__video");
-  if (!video || prefersReduced || navigator.connection?.saveData) return;
-
-  const reveal = () => {
-    video.classList.add("is-playing");
-  };
-
-  video.addEventListener("loadeddata", reveal, { once: true });
-  video.addEventListener("playing", reveal, { once: true });
-
-  if (video.readyState >= 2) reveal();
-
-  const play = () => video.play().catch(() => {});
-  play();
-  video.addEventListener("canplay", play, { once: true });
-}
-
 function wireLazyMedia() {
   const lazyVideos = [...document.querySelectorAll("video[data-src]")];
   if (lazyVideos.length) {
@@ -634,7 +616,6 @@ wireFooterYear();
 wireNav();
 wireDropdowns();
 wireSmoothAnchors();
-wireHeroVideo();
 wireLazyMedia();
 
 scheduleIdle(() => {

@@ -160,18 +160,18 @@
 
     <main id="main" class="main" role="main">
       <section class="hero" aria-label="Présentation">
-        <video
-          class="hero__video"
-          autoplay
-          muted
-          loop
-          playsinline
-          preload="auto"
-          aria-hidden="true"
-        >
-          <source src="./assets/hero-bg-mobile.mp4" type="video/mp4" media="(max-width: 768px)" />
-          <source src="./assets/hero-bg.mp4" type="video/mp4" />
-        </video>
+        <picture class="hero__bg" aria-hidden="true">
+          <source srcset="./assets/toillet.webp" type="image/webp" />
+          <img
+            class="hero__bg-img"
+            src="./assets/toillet.jpeg"
+            width="1280"
+            height="1280"
+            alt=""
+            fetchpriority="high"
+            decoding="async"
+          />
+        </picture>
         <div class="hero__overlay" aria-hidden="true"></div>
         <div class="hero__inner">
           <div class="hero__grid">
