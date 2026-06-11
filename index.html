@@ -160,18 +160,16 @@
 
     <main id="main" class="main" role="main">
       <section class="hero" aria-label="Présentation">
-        <picture class="hero__bg" aria-hidden="true">
-          <source srcset="./assets/toillet.webp" type="image/webp" />
-          <img
-            class="hero__bg-img"
-            src="./assets/toillet.jpeg"
-            width="1280"
-            height="1280"
-            alt=""
-            fetchpriority="high"
-            decoding="async"
-          />
-        </picture>
+        <img
+          class="hero__bg"
+          src="./assets/toillet.webp"
+          width="1200"
+          height="1200"
+          alt=""
+          fetchpriority="high"
+          decoding="sync"
+          aria-hidden="true"
+        />
         <div class="hero__overlay" aria-hidden="true"></div>
         <div class="hero__inner">
           <div class="hero__grid">
@@ -389,8 +387,8 @@
                 </div>
                 <figure class="svc-item__media">
                   <picture>
-                    <source srcset="./assets/services/pompage.webp" type="image/webp" />
-                    <img src="./assets/services/pompage.jpg" width="640" height="420" alt="Pompage et vidange Normandie Débouche" loading="lazy" decoding="async" sizes="(max-width: 768px) 90vw, 400px" />
+                    <source srcset="./assets/services/pompageimage.webp" type="image/webp" />
+                    <img src="./assets/services/pompageimage.jpeg" width="942" height="2048" alt="Pompage et vidange Normandie Débouche" loading="lazy" decoding="async" sizes="(max-width: 768px) 90vw, 400px" />
                   </picture>
                 </figure>
               </div>
@@ -1043,14 +1041,15 @@
 
           <div class="contact__visual">
             <div class="contact__map">
-              <iframe
-                class="contact__map-frame"
-                title="Zone d'intervention Normandie Débouche — Rouen, Le Havre, Caen, Évreux et toute la Normandie"
-                data-src="https://www.google.com/maps?q=Normandie,France&z=8&output=embed"
+              <img
+                class="contact__map-img"
+                src="./assets/normandie-zone.webp"
+                width="565"
+                height="545"
+                alt="Zone d'intervention Normandie Débouche — Seine-Maritime, Eure, Calvados et Orne"
                 loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"
-                allowfullscreen
-              ></iframe>
+                decoding="async"
+              />
             </div>
 
             <div class="contact__pitch">

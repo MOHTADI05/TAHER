@@ -345,16 +345,13 @@ a {
 .hero__bg {
   position: absolute;
   inset: 0;
-  z-index: 0;
-  display: block;
-  pointer-events: none;
-}
-
-.hero__bg-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center center;
+  z-index: 0;
+  pointer-events: none;
+  filter: saturate(1.08) contrast(1.04) brightness(0.92);
 }
 
 .hero__overlay {
@@ -625,6 +622,14 @@ a {
   overflow: visible;
 }
 
+.section--services .section__lede {
+  color: #3d4a5c;
+}
+
+.section--services .section__hint {
+  color: var(--blue-dark);
+}
+
 /* Hover-expand services list */
 .svc-list {
   margin-top: 8px;
@@ -656,7 +661,7 @@ a {
   font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.04em;
-  color: var(--faint);
+  color: var(--muted);
   transition: color 0.3s var(--ease);
 }
 
@@ -667,7 +672,7 @@ a {
   font-weight: 800;
   line-height: 1.05;
   letter-spacing: -0.02em;
-  color: #c2c8d0;
+  color: #4a5568;
   transition: color 0.35s var(--ease);
 }
 
@@ -729,7 +734,7 @@ a {
   border: 1px solid var(--stroke);
   font-size: 13px;
   font-weight: 600;
-  color: var(--muted);
+  color: var(--ink);
   background: var(--white);
 }
 
@@ -738,7 +743,7 @@ a {
   max-width: 52ch;
   font-size: 15px;
   line-height: 1.6;
-  color: var(--muted);
+  color: #3d4a5c;
 }
 
 .svc-item__media {
@@ -773,28 +778,28 @@ a {
 /* Name + number highlight for the open / hovered item */
 .svc-item.is-open .svc-item__name,
 .svc-item:hover .svc-item__name {
-  color: var(--green-dark);
+  color: var(--blue-dark);
 }
 
 .svc-item.is-open .svc-item__num,
 .svc-item:hover .svc-item__num {
-  color: var(--green-dark);
+  color: var(--blue);
 }
 
 .svc-list:hover .svc-item .svc-item__name {
-  color: #c2c8d0;
+  color: #4a5568;
 }
 
 .svc-list:hover .svc-item .svc-item__num {
-  color: var(--faint);
+  color: var(--muted);
 }
 
 .svc-list:hover .svc-item:hover .svc-item__name {
-  color: var(--green-dark);
+  color: var(--blue-dark);
 }
 
 .svc-list:hover .svc-item:hover .svc-item__num {
-  color: var(--green-dark);
+  color: var(--blue);
 }
 
 /* Plus icon → minus when open / hovered */
@@ -1841,12 +1846,14 @@ a {
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.22);
 }
 
-.contact__map-frame {
+.contact__map-img {
   display: block;
   width: 100%;
   height: clamp(240px, 32vw, 340px);
-  border: 0;
+  object-fit: cover;
+  object-position: center center;
   border-radius: var(--radius-lg);
+  background: #f4f6f8;
 }
 
 .contact__pitch {
