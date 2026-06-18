@@ -1776,6 +1776,61 @@ a {
   font-weight: 700;
 }
 
+.social-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.social-links--contact {
+  margin-bottom: 20px;
+}
+
+.social-links--footer {
+  justify-content: flex-end;
+}
+
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  color: var(--white);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.social-links--footer .social-link {
+  padding: 8px 10px;
+}
+
+.social-link:hover {
+  background: rgba(255, 255, 255, 0.22);
+  transform: translateY(-1px);
+}
+
+.social-link__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.social-link__svg {
+  width: 20px;
+  height: 20px;
+}
+
+.social-links--footer .social-link__svg {
+  width: 22px;
+  height: 22px;
+}
+
 .contact-form {
   display: grid;
   gap: 12px;
@@ -1819,6 +1874,27 @@ a {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%231a4ba8' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 14px center;
+}
+
+.contact-form__honey {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.contact-form__success {
+  margin: 0 0 4px;
+  padding: 14px 16px;
+  border-radius: var(--radius);
+  background: var(--green-light);
+  border: 1px solid rgba(45, 184, 74, 0.35);
+  color: var(--green-dark);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.45;
 }
 
 .contact-form__note {
@@ -2469,8 +2545,12 @@ a {
   font-weight: 600;
 }
 
-.footer__links a:hover {
+.footer__links a:not(.social-link):hover {
   text-decoration: underline;
+}
+
+.footer__links .social-links {
+  margin-top: 4px;
 }
 
 .footer__dispo {
@@ -2688,6 +2768,10 @@ a {
 
   .footer__links {
     text-align: center;
+  }
+
+  .social-links--footer {
+    justify-content: center;
   }
 
   .brand-strip {

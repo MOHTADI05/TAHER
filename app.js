@@ -123,24 +123,14 @@ function wireReveals() {
 }
 
 function wireForm() {
-  const form = document.querySelector(".contact-form");
-  if (!form) return;
+  const success = document.getElementById("contact-success");
+  if (!success) return;
 
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    if (!form.reportValidity()) return;
+  const params = new URLSearchParams(window.location.search);
+  if (params.get("sent") !== "1") return;
 
-    const name = form.querySelector("[name='name']")?.value?.trim() || "";
-    const phone = form.querySelector("[name='phone']")?.value?.trim() || "";
-    const message = form.querySelector("[name='message']")?.value?.trim() || "";
-
-    const subject = encodeURIComponent("Demande — Normandie Débouche");
-    const body = encodeURIComponent(
-      `Nom : ${name}\nTéléphone : ${phone}\n\nMessage :\n${message}`
-    );
-
-    window.location.href = `mailto:normandiedebouche@gmail.com?subject=${subject}&body=${body}`;
-  });
+  success.hidden = false;
+  success.scrollIntoView({ behavior: prefersReduced ? "auto" : "smooth", block: "nearest" });
 }
 
 function wireServicesList() {
