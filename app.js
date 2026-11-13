@@ -534,8 +534,14 @@ function wireCounters() {
   const stats = [...document.querySelectorAll(".why-stat[data-count]")];
   if (!stats.length) return;
 
+  const paint = (stat) => {
+    if (stat.dataset.counted === "1") return;
+    stat.dataset.counted = "1";
+    runCounter(stat);
+  };
+
   if (prefersReduced || !("IntersectionObserver" in window)) {
-    stats.forEach(runCounter);
+    stats.forEach(paint);
     return;
   }
 
@@ -543,14 +549,15 @@ function wireCounters() {
     (entries) => {
       for (const entry of entries) {
         if (!entry.isIntersecting) continue;
-        runCounter(entry.target);
+        paint(entry.target);
         io.unobserve(entry.target);
       }
     },
-    { threshold: 0.4 }
+    { threshold: 0.1, rootMargin: "120px 0px" }
   );
 
   stats.forEach((stat) => io.observe(stat));
+  setTimeout(() => stats.forEach(paint), 800);
 }
 
 function wireLazyMedia() {
@@ -602,11 +609,137 @@ function wireLazyMedia() {
   }
 }
 
+const GA_MEASUREMENT_ID = "";
+const CONSENT_COOKIE = "nd_consent";
+const CONSENT_MAX_AGE = 60 * 60 * 24 * 395;
+
+function readCookie(name) {
+  const match = document.cookie.split("; ").find((row) => row.startsWith(name + "="));
+  return match ? decodeURIComponent(match.split("=")[1]) : "";
+}
+
+function writeCookie(name, value, maxAge) {
+  document.cookie = `${name}=${encodeURIComponent(value)}; Max-Age=${maxAge}; Path=/; SameSite=Lax`;
+}
+
+function ensureGtag() {
+  window.dataLayer = window.dataLayer || [];
+  if (typeof window.gtag !== "function") {
+    window.gtag = function gtag() {
+      window.dataLayer.push(arguments);
+    };
+  }
+}
+
+function applyGoogleConsent(granted) {
+  ensureGtag();
+  const state = granted ? "granted" : "denied";
+  window.gtag("consent", "update", {
+    ad_storage: state,
+    ad_user_data: state,
+    ad_personalization: state,
+    analytics_storage: state,
+  });
+}
+
+function loadGoogleAnalytics() {
+  if (!GA_MEASUREMENT_ID || window.__ndGaLoaded) return;
+  window.__ndGaLoaded = true;
+  ensureGtag();
+  const script = document.createElement("script");
+  script.async = true;
+  script.src = "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(GA_MEASUREMENT_ID);
+  document.head.appendChild(script);
+  window.gtag("js", new Date());
+  window.gtag("config", GA_MEASUREMENT_ID, { anonymize_ip: true });
+}
+
+function setConsent(choice) {
+  writeCookie(CONSENT_COOKIE, choice, CONSENT_MAX_AGE);
+  const granted = choice === "all";
+  applyGoogleConsent(granted);
+  if (granted) loadGoogleAnalytics();
+  hideCookieBanner();
+}
+
+function hideCookieBanner() {
+  document.getElementById("cookie-banner")?.setAttribute("hidden", "");
+}
+
+function showCookieBanner() {
+  document.getElementById("cookie-banner")?.removeAttribute("hidden");
+}
+
+function wireCookieConsent() {
+  ensureGtag();
+  window.gtag("consent", "default", {
+    ad_storage: "denied",
+    ad_user_data: "denied",
+    ad_personalization: "denied",
+    analytics_storage: "denied",
+    wait_for_update: 500,
+  });
+
+  if (document.getElementById("cookie-banner")) return;
+
+  const banner = document.createElement("div");
+  banner.id = "cookie-banner";
+  banner.className = "cookie-banner";
+  banner.setAttribute("role", "dialog");
+  banner.setAttribute("aria-labelledby", "cookie-banner-title");
+  banner.setAttribute("aria-describedby", "cookie-banner-text");
+  banner.innerHTML = `
+    <p class="cookie-banner__title" id="cookie-banner-title">Cookies et mesure d'audience</p>
+    <p class="cookie-banner__text" id="cookie-banner-text">
+      Nous utilisons des cookies nécessaires au fonctionnement du site et, avec votre accord,
+      des cookies d'audience pour améliorer le référencement et nos pages (Google Analytics, Consent Mode v2).
+      <a href="./politique-cookies.html">Politique cookies</a>.
+    </p>
+    <div class="cookie-banner__actions">
+      <button type="button" class="btn btn--primary" data-cookie-choice="all">Tout accepter</button>
+      <button type="button" class="btn btn--ghost" data-cookie-choice="necessary">Tout refuser</button>
+      <a class="btn btn--outline" href="./politique-cookies.html">En savoir plus</a>
+    </div>
+  `;
+  document.body.appendChild(banner);
+
+  banner.addEventListener("click", (e) => {
+    const choice = e.target?.closest?.("[data-cookie-choice]")?.getAttribute("data-cookie-choice");
+    if (choice) setConsent(choice);
+  });
+
+  document.addEventListener("click", (e) => {
+    if (!e.target?.closest?.("[data-open-cookies]")) return;
+    writeCookie(CONSENT_COOKIE, "", 0);
+    applyGoogleConsent(false);
+    showCookieBanner();
+  });
+
+  const existing = readCookie(CONSENT_COOKIE);
+  if (existing === "all" || existing === "necessary") {
+    hideCookieBanner();
+    applyGoogleConsent(existing === "all");
+    if (existing === "all") loadGoogleAnalytics();
+  }
+}
+
+function wireLegalFooter() {
+  const copy = document.querySelector(".footer__copy");
+  if (!copy || copy.querySelector(".footer__legal")) return;
+  const legal = document.createElement("span");
+  legal.className = "footer__legal";
+  legal.innerHTML =
+    '<a href="./mentions-legales.html">Mentions légales</a> · <a href="./politique-cookies.html">Cookies</a> · <button type="button" class="footer__cookies-btn" data-open-cookies>Gérer les cookies</button>';
+  copy.appendChild(legal);
+}
+
 wireFooterYear();
 wireNav();
 wireDropdowns();
 wireSmoothAnchors();
 wireLazyMedia();
+wireCookieConsent();
+wireLegalFooter();
 
 scheduleIdle(() => {
   wireReveals();
