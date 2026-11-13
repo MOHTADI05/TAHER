@@ -534,14 +534,8 @@ function wireCounters() {
   const stats = [...document.querySelectorAll(".why-stat[data-count]")];
   if (!stats.length) return;
 
-  const paint = (stat) => {
-    if (stat.dataset.counted === "1") return;
-    stat.dataset.counted = "1";
-    runCounter(stat);
-  };
-
   if (prefersReduced || !("IntersectionObserver" in window)) {
-    stats.forEach(paint);
+    stats.forEach(runCounter);
     return;
   }
 
@@ -549,15 +543,14 @@ function wireCounters() {
     (entries) => {
       for (const entry of entries) {
         if (!entry.isIntersecting) continue;
-        paint(entry.target);
+        runCounter(entry.target);
         io.unobserve(entry.target);
       }
     },
-    { threshold: 0.1, rootMargin: "120px 0px" }
+    { threshold: 0.4 }
   );
 
   stats.forEach((stat) => io.observe(stat));
-  setTimeout(() => stats.forEach(paint), 800);
 }
 
 function wireLazyMedia() {

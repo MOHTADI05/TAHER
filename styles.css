@@ -465,16 +465,6 @@ a {
   max-width: 100%;
 }
 
-.hero__lede {
-  margin: 12px 0 0;
-  max-width: 36ch;
-  font-size: clamp(14px, 1.8vw, 17px);
-  font-weight: 600;
-  line-height: 1.4;
-  color: rgba(255, 255, 255, 0.92);
-  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.35);
-}
-
 .hero__line {
   display: block;
   font-size: clamp(54px, 9vw, 92px);
@@ -1379,23 +1369,6 @@ a {
 /* Avis */
 .section--avis {
   background: var(--bg);
-}
-
-.avis-cta {
-  max-width: 62ch;
-  padding: 22px 24px;
-  background: var(--white);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow);
-  display: grid;
-  gap: 14px;
-  justify-items: start;
-}
-
-.avis-cta p {
-  margin: 0;
-  font-size: 16px;
-  line-height: 1.6;
 }
 
 .avis {
