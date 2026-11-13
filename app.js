@@ -729,12 +729,14 @@ function wireAvisMarquee() {
 
 function wireLegalFooter() {
   const copy = document.querySelector(".footer__copy");
-  if (!copy || copy.querySelector(".footer__legal")) return;
-  const legal = document.createElement("span");
-  legal.className = "footer__legal";
-  legal.innerHTML =
-    '<a href="./mentions-legales.html">Mentions légales</a> · <a href="./politique-cookies.html">Cookies</a> · <button type="button" class="footer__cookies-btn" data-open-cookies>Gérer les cookies</button>';
-  copy.appendChild(legal);
+  if (!copy) return;
+  copy.innerHTML =
+    '© <span data-year></span> Normandie Débouche — Tous droits réservés. | ' +
+    '<a href="./mentions-legales.html">Mentions légales</a> | ' +
+    '<a href="./politique-confidentialite.html">Politique de confidentialité</a> | ' +
+    '<a href="./cgv.html">CGV</a>';
+  const year = copy.querySelector("[data-year]");
+  if (year) year.textContent = String(new Date().getFullYear());
 }
 
 wireFooterYear();
