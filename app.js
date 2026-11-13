@@ -716,6 +716,17 @@ function wireCookieConsent() {
   }
 }
 
+function wireAvisMarquee() {
+  const list = document.querySelector(".avis");
+  const track = document.querySelector(".avis-track");
+  if (!list || !track || track.querySelector(".avis[aria-hidden]")) return;
+  const clone = list.cloneNode(true);
+  clone.setAttribute("aria-hidden", "true");
+  clone.removeAttribute("role");
+  clone.querySelectorAll("[role]").forEach((el) => el.removeAttribute("role"));
+  track.appendChild(clone);
+}
+
 function wireLegalFooter() {
   const copy = document.querySelector(".footer__copy");
   if (!copy || copy.querySelector(".footer__legal")) return;
@@ -733,6 +744,7 @@ wireSmoothAnchors();
 wireLazyMedia();
 wireCookieConsent();
 wireLegalFooter();
+wireAvisMarquee();
 
 scheduleIdle(() => {
   wireReveals();
