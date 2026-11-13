@@ -1376,7 +1376,7 @@ a {
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 16px;
 }
 
@@ -1439,6 +1439,11 @@ a {
   margin: 0;
   font-size: 13px;
   color: rgba(255, 255, 255, 0.8);
+}
+
+.avis-google {
+  margin: 24px 0 0;
+  text-align: center;
 }
 
 /* FAQ */
