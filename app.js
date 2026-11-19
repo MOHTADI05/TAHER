@@ -727,25 +727,12 @@ function wireAvisMarquee() {
   track.appendChild(clone);
 }
 
-function wireLegalFooter() {
-  const copy = document.querySelector(".footer__copy");
-  if (!copy) return;
-  copy.innerHTML =
-    '© <span data-year></span> Normandie Débouche — Tous droits réservés. | ' +
-    '<a href="./mentions-legales.html">Mentions légales</a> | ' +
-    '<a href="./politique-confidentialite.html">Politique de confidentialité</a> | ' +
-    '<a href="./cgv.html">CGV</a>';
-  const year = copy.querySelector("[data-year]");
-  if (year) year.textContent = String(new Date().getFullYear());
-}
-
 wireFooterYear();
 wireNav();
 wireDropdowns();
 wireSmoothAnchors();
 wireLazyMedia();
 wireCookieConsent();
-wireLegalFooter();
 wireAvisMarquee();
 
 scheduleIdle(() => {
